@@ -18,9 +18,6 @@
       <categories>
         <category>网络基础</category>
       </categories>
-      <tags>
-        <tag>Network</tag>
-      </tags>
   </entry>
   <entry>
     <title><![CDATA[HTTP响应码]]></title>
@@ -29,8 +26,5 @@
       <categories>
         <category>网络基础</category>
       </categories>
-      <tags>
-        <tag>Network</tag>
-      </tags>
   </entry>
 </search>
