@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Don&#39;t let your dreams be dreams">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="一些常见的的服务端口 1,web类(web漏洞/敏感目录)80 web80-89 web8000-9090 web 2,数据库类(扫描弱口令)1433 MSSQL1521 Oracle3306 MySQL5432 PostgreSQL  3,特殊服务类(未授权/命令执行类/漏洞)443 SSL心脏滴血873 Rsync未授权5984 CouchDB http://xxx:5984/_utils/6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渗透测试常见漏洞">
+<meta property="og:url" content="http://yoursite.com/2019/08/07/渗透测试常见漏洞/index.html">
 <meta property="og:site_name" content="Don&#39;t let your dreams be dreams">
+<meta property="og:description" content="一些常见的的服务端口 1,web类(web漏洞/敏感目录)80 web80-89 web8000-9090 web 2,数据库类(扫描弱口令)1433 MSSQL1521 Oracle3306 MySQL5432 PostgreSQL  3,特殊服务类(未授权/命令执行类/漏洞)443 SSL心脏滴血873 Rsync未授权5984 CouchDB http://xxx:5984/_utils/6">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-07T09:24:04.634Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Don&#39;t let your dreams be dreams">
+<meta name="twitter:title" content="渗透测试常见漏洞">
+<meta name="twitter:description" content="一些常见的的服务端口 1,web类(web漏洞/敏感目录)80 web80-89 web8000-9090 web 2,数据库类(扫描弱口令)1433 MSSQL1521 Oracle3306 MySQL5432 PostgreSQL  3,特殊服务类(未授权/命令执行类/漏洞)443 SSL心脏滴血873 Rsync未授权5984 CouchDB http://xxx:5984/_utils/6">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/07/渗透测试常见漏洞/">
 
 
 
 
 
-  <title>Don't let your dreams be dreams</title>
+  <title>渗透测试常见漏洞 | Don't let your dreams be dreams</title>
   
 
 
@@ -140,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -266,9 +269,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -298,9 +301,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/渗透测试常见漏洞/" itemprop="url">渗透测试常见漏洞</a></h1>
+          <h1 class="post-title" itemprop="name headline">渗透测试常见漏洞</h1>
         
 
         <div class="post-meta">
@@ -372,21 +373,54 @@
       
 
       
-        
-          
-          一些常见的的服务端口
-1,web类(web漏洞/敏感目录)80 web80-89 web8000-9090 web
-2,数据库类(扫描弱口令)1433 MSSQL1521 Oracle3306 MySQL5432 PostgreSQL 
-3,特殊服务类(未授权/命令执行类/漏洞)443 SSL心脏滴
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/07/渗透测试常见漏洞/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <p>一些常见的的服务端口</p>
+<h2 id="1-web类-web漏洞-敏感目录"><a href="#1-web类-web漏洞-敏感目录" class="headerlink" title="1,web类(web漏洞/敏感目录)"></a>1,web类(web漏洞/敏感目录)</h2><p>80 web<br>80-89 web<br>8000-9090 web</p>
+<h2 id="2-数据库类-扫描弱口令"><a href="#2-数据库类-扫描弱口令" class="headerlink" title="2,数据库类(扫描弱口令)"></a>2,数据库类(扫描弱口令)</h2><p>1433 MSSQL<br>1521 Oracle<br>3306 MySQL<br>5432 PostgreSQL </p>
+<h2 id="3-特殊服务类-未授权-命令执行类-漏洞"><a href="#3-特殊服务类-未授权-命令执行类-漏洞" class="headerlink" title="3,特殊服务类(未授权/命令执行类/漏洞)"></a>3,特殊服务类(未授权/命令执行类/漏洞)</h2><p>443 SSL心脏滴血<br>873 Rsync未授权<br>5984 CouchDB <a href="http://xxx:5984/_utils/" target="_blank" rel="noopener">http://xxx:5984/_utils/</a><br>6379 redis未授权<br>7001,7002 WebLogic默认弱口令，反序列<br>9200,9300 elasticsearch 参考WooYun: 多玩某服务器ElasticSearch命令执行漏洞<br>11211 memcache未授权访问<br>27017,27018 Mongodb未授权访问<br>50000 SAP命令执行<br>50070,50030 hadoop默认端口未授权访问</p>
+<h2 id="4-常用端口类-扫描弱口令-端口爆破"><a href="#4-常用端口类-扫描弱口令-端口爆破" class="headerlink" title="4,常用端口类(扫描弱口令/端口爆破)"></a>4,常用端口类(扫描弱口令/端口爆破)</h2><p>21 ftp<br>22 SSH<br>23 Telnet<br>2601,2604 zebra路由，默认密码zebra<br>3389 远程桌面<br>端口合计详情</p>
+<p>21 ftp </p>
+<p>22 SSH </p>
+<p>23 Telnet </p>
+<p>80 web </p>
+<p>80-89 web </p>
+<p>161 SNMP </p>
+<p>389 LDAP </p>
+<p>443 SSL心脏滴血以及一些web漏洞测试 </p>
+<p>445 SMB </p>
+<p>512,513,514 Rexec </p>
+<p>873 Rsync未授权 </p>
+<p>1025,111 NFS </p>
+<p>1433 MSSQL </p>
+<p>1521 Oracle:(iSqlPlus Port:5560,7778) </p>
+<p>2082/2083 cpanel主机管理系统登陆 （国外用较多）</p>
+<p>2222 DA虚拟主机管理系统登陆 （国外用较多） </p>
+<p>2601,2604 zebra路由，默认密码zebra</p>
+<p>3128 squid代理默认端口，如果没设置口令很可能就直接漫游内网了 </p>
+<p>3306 MySQL </p>
+<p>3312/3311 kangle主机管理系统登陆 </p>
+<p>3389 远程桌面 </p>
+<p>4440 rundeck 参考WooYun: 借用新浪某服务成功漫游新浪内网 </p>
+<p>5432 PostgreSQL </p>
+<p>5900 vnc </p>
+<p>5984 CouchDB <a href="http://xxx:5984/_utils/" target="_blank" rel="noopener">http://xxx:5984/_utils/</a> </p>
+<p>6082 varnish 参考WooYun: Varnish HTTP accelerator CLI 未授权访问易导致网站被直接篡改或者作为代理进入内网 </p>
+<p>6379 redis未授权 </p>
+<p>7001,7002 WebLogic默认弱口令，反序列 </p>
+<p>7778 Kloxo主机控制面板登录 </p>
+<p>8000-9090 都是一些常见的web端口，有些运维喜欢把管理后台开在这些非80的端口上 </p>
+<p>8080 tomcat/WDCP主机管理系统，默认弱口令 </p>
+<p>8080,8089,9090 JBOSS </p>
+<p>8083 Vestacp主机管理系统 （国外用较多） </p>
+<p>8649 ganglia </p>
+<p>8888 amh/LuManager 主机管理系统默认端口 </p>
+<p>9200,9300 elasticsearch 参考WooYun: 多玩某服务器ElasticSearch命令执行漏洞 </p>
+<p>10000 Virtualmin/Webmin 服务器虚拟主机管理系统 </p>
+<p>11211 memcache未授权访问 </p>
+<p>27017,27018 Mongodb未授权访问 </p>
+<p>28017 mongodb统计页面 </p>
+<p>50000 SAP命令执行 </p>
+<p>50070,50030 hadoop默认端口未授权访问</p>
+
       
     </div>
     
@@ -396,6 +430,30 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Just as you like</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wxfkm.png" alt="RedYan 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
@@ -403,162 +461,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/07/一些面试题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RedYan">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Don't let your dreams be dreams">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/一些面试题/" itemprop="url">一些面试题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T10:48:33+08:00">
-                2019-08-07
-              </time>
+              <a href="/2019/08/07/一些面试题/" rel="next" title="一些面试题">
+                <i class="fa fa-chevron-left"></i> 一些面试题
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/渗透测试/" itemprop="url" rel="index">
-                    <span itemprop="name">渗透测试</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          一些面试题
-1.为何一个MYSQL数据库的站，只有一个80端口开放？（1）更改了端口，没扫描出来；（2）站库分离；（3）3306端口不对外开放。
-2.一个成熟并且相对安全的CMS，渗透时扫目录的意义？（1）敏感文件，二级目录扫描（2）站长的误操作，比如：网站备份的压缩文件，说明.txt，二级目录可能
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/07/一些面试题/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -568,311 +492,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/05/谷歌语法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RedYan">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Don't let your dreams be dreams">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/05/谷歌语法/" itemprop="url">谷歌语法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-05T16:26:55+08:00">
-                2019-08-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络基础/" itemprop="url" rel="index">
-                    <span itemprop="name">网络基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          很多搜索引擎支持通配符号，如“”代表一连串字符，“?”代表单个字符等。*Google不支持 通配符*，只能做精确查询，关键字中的“”或者“?”会被忽略掉。
-Google 对英文字符大小写不敏感，“xiaomi”和“XIAOMI”搜索的结果是一样的。
-Google的关键字可以是词组（中间没有空格），也
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/05/谷歌语法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/05/HTTP响应码/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RedYan">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Don't let your dreams be dreams">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/05/HTTP响应码/" itemprop="url">HTTP响应码</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-05T12:19:21+08:00">
-                2019-08-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络基础/" itemprop="url" rel="index">
-                    <span itemprop="name">网络基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          响应码由三位十进制数字组成，它们出现在由HTTP服务器发送的响应的第一行。 
-响应码分五种类型，由它们的第一位数字表示：1xx：（临时响应）表示临时响应并需要请求者继续执行操作的状态代码。
-100 :(继续)请求者应当继续提出请求。服务器返回此代码表示已收到请求的第一部分，正在等待其余部分。 
-10
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/05/HTTP响应码/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -880,6 +504,10 @@ Google的关键字可以是词组（中间没有空格），也
 
 
           
+
+  
+
+
 
         </div>
         
@@ -900,8 +528,17 @@ Google的关键字可以是词组（中间没有空格），也
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -964,6 +601,22 @@ Google的关键字可以是词组（中间没有空格），也
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-web类-web漏洞-敏感目录"><span class="nav-number">1.</span> <span class="nav-text">1,web类(web漏洞/敏感目录)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-数据库类-扫描弱口令"><span class="nav-number">2.</span> <span class="nav-text">2,数据库类(扫描弱口令)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-特殊服务类-未授权-命令执行类-漏洞"><span class="nav-number">3.</span> <span class="nav-text">3,特殊服务类(未授权/命令执行类/漏洞)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-常用端口类-扫描弱口令-端口爆破"><span class="nav-number">4.</span> <span class="nav-text">4,常用端口类(扫描弱口令/端口爆破)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1113,6 +766,10 @@ Google的关键字可以是词组（中间没有空格），也
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
