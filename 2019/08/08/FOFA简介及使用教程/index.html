@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="FOFA,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="FOFA 是什么？FOFA 是白帽汇推出的一款网络空间搜索引擎,它通过进行网络空间测绘,能够帮助研究人员或者企业迅速进行网络资产匹配,例如进行漏洞影响范围分析、应用分布统计、应用流行度等。FOFA 搜索引擎检索到的内容主要是服务器，数据库，某个网站管理后台，路由器，交换机，公共ip的打印机，网络摄像头，门禁系统，Web服务   ……FOFA 这类搜索引擎又有另一个名字：网络空间测绘系统。—— 它们">
+<meta name="keywords" content="FOFA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FOFA简介及使用教程">
+<meta property="og:url" content="http://yoursite.com/2019/08/08/FOFA简介及使用教程/index.html">
+<meta property="og:site_name" content="Don&#39;t let your dreams be dreams">
+<meta property="og:description" content="FOFA 是什么？FOFA 是白帽汇推出的一款网络空间搜索引擎,它通过进行网络空间测绘,能够帮助研究人员或者企业迅速进行网络资产匹配,例如进行漏洞影响范围分析、应用分布统计、应用流行度等。FOFA 搜索引擎检索到的内容主要是服务器，数据库，某个网站管理后台，路由器，交换机，公共ip的打印机，网络摄像头，门禁系统，Web服务   ……FOFA 这类搜索引擎又有另一个名字：网络空间测绘系统。—— 它们">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="c:%5CUsers%5Cdanie%5CDesktop%5C111.jpg">
+<meta property="og:updated_time" content="2019-08-08T03:52:45.259Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FOFA简介及使用教程">
+<meta name="twitter:description" content="FOFA 是什么？FOFA 是白帽汇推出的一款网络空间搜索引擎,它通过进行网络空间测绘,能够帮助研究人员或者企业迅速进行网络资产匹配,例如进行漏洞影响范围分析、应用分布统计、应用流行度等。FOFA 搜索引擎检索到的内容主要是服务器，数据库，某个网站管理后台，路由器，交换机，公共ip的打印机，网络摄像头，门禁系统，Web服务   ……FOFA 这类搜索引擎又有另一个名字：网络空间测绘系统。—— 它们">
+<meta name="twitter:image" content="c:%5CUsers%5Cdanie%5CDesktop%5C111.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/08/FOFA简介及使用教程/">
+
+
+
+
+
+  <title>FOFA简介及使用教程 | Don't let your dreams be dreams</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Don't let your dreams be dreams</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/08/FOFA简介及使用教程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RedYan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Don't let your dreams be dreams">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">FOFA简介及使用教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-08T11:41:34+08:00">
+                2019-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/渗透测试/" itemprop="url" rel="index">
+                    <span itemprop="name">渗透测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="FOFA-是什么？"><a href="#FOFA-是什么？" class="headerlink" title="FOFA 是什么？"></a>FOFA 是什么？</h1><p>FOFA 是白帽汇推出的一款网络空间搜索引擎,它通过进行网络空间测绘,能够帮助研究人员或者企业迅速进行网络资产匹配,例如进行漏洞影响范围分析、应用分布统计、应用流行度等。<br>FOFA 搜索引擎检索到的内容主要是服务器，数据库，某个网站管理后台，路由器，交换机，公共ip的打印机，网络摄像头，门禁系统，Web服务   ……<br>FOFA 这类搜索引擎又有另一个名字：网络空间测绘系统。—— 它们就像是现实生活中的卫星地图那样，一点点勾勒出公共网络空间的样子，每一个网站、每一台公共环境下的服务器……当一个高危漏洞爆发，FOFA系统便能向卫星定位地址一样，通过特征迅速找到全网的脆弱设备。<br>网站：<a href="https://fofa.so/" target="_blank" rel="noopener">https://fofa.so/</a>    FOFA不仅提供了在线搜索还提供了FOFA Pro客户端版本<br><img src="C:%5CUsers%5Cdanie%5CDesktop%5C111.jpg" alt="111"></p>
+<p>注意：<br>1) 普通会员和高级会员的 免费100条 和 免费10000条 是指每天调用API可以免费获取前100条和前10000条,假设高级会员调用API,每页获取3333条，第1、2、3页由于没有超过前10000条，所以免费，第4页超过前10000条，所以会扣除1FOFA币。<br>2) 直接下载数据，无论多少条数据，都要花费FOFA币。<br>普通会员300  高级会员1000   终身制 。</p>
+<h1 id="查询语法介绍"><a href="#查询语法介绍" class="headerlink" title="查询语法介绍"></a>查询语法介绍</h1><h2 id="1、怎么搜？"><a href="#1、怎么搜？" class="headerlink" title="1、怎么搜？"></a>1、怎么搜？</h2><p>首先FOFA作为一个搜索引擎，我们要熟悉它的查询语法，类似google语法，FOFA的语法也是简单易懂，主要分为检索字段以及运算符，所有的查询语句都是由这两种元素组成的。目前支持的检索字段包括：domain，host，ip，title，server，header，body，port，cert，country，city，os，appserver，middleware，language，tags，user_tag等等，支持的逻辑运算符包括：= ，==，!= ，&amp;&amp;，||。了解了检索字段和逻辑运算符之后，就基本掌握了FOFA的用法了。例如搜索title字段中存在后台的网站，我们只需要在输入栏中输入title=”后台”，输出的结果即为全网title中存在后台两个字的网站，对于黑客而言，可以利用得到的信息可以继续进行渗透攻击，对于网站的后台进行密码暴力破解，密码找回等等攻击行为，这样就可以轻松愉快的开始一次简单渗透攻击之旅，而企业用户也可以利用得到的信息进行内部的弱口令排查等等，防范于未然。</p>
+<p>下面为大家一一介绍目前支持的所有检索字段的用法：</p>
+<h3 id="1-1-domain"><a href="#1-1-domain" class="headerlink" title="1.1 domain"></a>1.1 domain</h3><p>例:搜索QQ所有的子域名 : domain=”qq.com”</p>
+<h3 id="1-2-host"><a href="#1-2-host" class="headerlink" title="1.2 host"></a>1.2 host</h3><p>例:搜索host内所有带有qq.com的域名: host=”qq.com”</p>
+<h3 id="1-3-ip"><a href="#1-3-ip" class="headerlink" title="1.3 ip"></a>1.3 ip</h3><p>例:搜索某个IP上的相关信息 ip=”58.63.236.248”<br>支持IP段搜索<br>ip=”111.1.1.1/8”<br>ip=”111.1.1.1/16”<br>ip=”111.1.1.1/24”</p>
+<h3 id="1-4-title"><a href="#1-4-title" class="headerlink" title="1.4 title"></a>1.4 title</h3><p>例:搜索title包含有”漏洞”的IP   title=”漏洞”</p>
+<h3 id="1-5-server"><a href="#1-5-server" class="headerlink" title="1.5 server"></a>1.5 server</h3><p>例:Apache出来了一个高危漏洞,我们需要去统计全球的Apache  server=”Apache”</p>
+<h3 id="1-6-header"><a href="#1-6-header" class="headerlink" title="1.6 header"></a>1.6 header</h3><p>例:搜索前段时间非常火的海康威视  header=”Hikvision”</p>
+<h3 id="1-7-body"><a href="#1-7-body" class="headerlink" title="1.7 body"></a>1.7 body</h3><p>例:假如我想搜索微博的后台,域名为:weibo.com并且网页内body包含”后台” body=”后台” &amp;&amp; domain=”weibo.com”</p>
+<p>&amp;&amp;:与body=”后台” &amp;&amp; domain=”weibo.com” 提取域名为:weibo.com并且网页内body包含”后台”的网站 需要同时满足两个条件</p>
+<h3 id="1-8-port"><a href="#1-8-port" class="headerlink" title="1.8 port"></a>1.8 port</h3><p>例:想要找非80端口     port!=”80”</p>
+<p>!=: port!=”80”匹配端口不为80端口的服务</p>
+<h3 id="1-9-cert"><a href="#1-9-cert" class="headerlink" title="1.9 cert"></a>1.9 cert</h3><p>搜索证书(https或者imaps等)</p>
+<p>例:百度公司为了检查自己的域名是否还有心脏出血漏洞可以使用语法: cert=”baidu”</p>
+<h3 id="1-10country"><a href="#1-10country" class="headerlink" title="1.10country"></a>1.10country</h3><p>搜索指定国家(编码)的资产</p>
+<p>例:搜索中国的服务器  country=”CN” </p>
+<p>注:country=”CN” country后面的规则为各国家的缩写,全球国家缩写如下链接:</p>
+<p><a href="https://zhidao.baidu.com/question/538403206.html" target="_blank" rel="noopener">https://zhidao.baidu.com/question/538403206.html</a></p>
+<h3 id="1-11-city"><a href="#1-11-city" class="headerlink" title="1.11 city"></a>1.11 city</h3><p>搜索指定城市的资产</p>
+<p>例:搜索上海的服务器 city=”Shanghai”</p>
+<p>注:搜索城市时填写城市的全称,首字母必须大写!</p>
+<h3 id="1-12-os"><a href="#1-12-os" class="headerlink" title="1.12 os"></a>1.12 os</h3><p>例:搜索centos所有主机    os=”centos”</p>
+<p>了解了基础查询我们再来谈谈高级查询，其实也很简单，就是多个基础查询语句用逻辑连接符拼成的语句，例如我们要搜索上海的Discus组件，搜索语句是(title=”Discuz”||body=”content=”Discuz”) &amp;&amp; city=”Shanghai”</p>
+<h3 id="amp-amp-逻辑与"><a href="#amp-amp-逻辑与" class="headerlink" title="&amp;&amp;:逻辑与"></a>&amp;&amp;:逻辑与</h3><h3 id="：逻辑或"><a href="#：逻辑或" class="headerlink" title="||：逻辑或"></a>||：逻辑或</h3><p>上面的语句意思为 (title=”Discuz”||body=”content=”Discuz”)与city=”Shanghai”这两个条件必须同时满足，(title=”Discuz”||body=”content=”Discuz”)中title=”Discuz” 与body=”content=”Discuz”满足一个即可。<br>利用高级搜索可以更细致的了解网络空间中每个用户关注的资产信息。</p>
+<h2 id="2、搜什么？"><a href="#2、搜什么？" class="headerlink" title="2、搜什么？"></a>2、搜什么？</h2><p>FOFA可以从不同维度搜索网络组件，例如地区，端口号，网络服务，操作系统，网络协议等等。目前FOFA支持了多个网络组件的指纹识别，包括建站模块、分享模块、各种开发框架、安全监测平台、项目管理系统、企业管理系统、视频监控系统、站长平台、电商系统、广告联盟、前端库、路由器、SSL证书、服务器管理系统、CDN、Web服务器、WAF、CMS等等，详细信息可见（<a href="https://fofa.so/library）。" target="_blank" rel="noopener">https://fofa.so/library）。</a></p>
+<h3 id="网站模块"><a href="#网站模块" class="headerlink" title="网站模块"></a>网站模块</h3><p>pagespeed， mod_bwlimited， mod_auth_passthrough， mod_auth_pam， mod_fastcgi， mod_jk， mod_perl， mod_python， mod_rack， mod_rails， mod_ssl， mod_wsgi， mod_antiloris，</p>
+<h3 id="广告联盟"><a href="#广告联盟" class="headerlink" title="广告联盟"></a>广告联盟</h3><p>doubleclick_ad， baidu广告联盟， Google_AdSense， Open_AdStream， adinfinity， adriver，</p>
+<h3 id="反向代理服务器"><a href="#反向代理服务器" class="headerlink" title="反向代理服务器"></a>反向代理服务器</h3><p>squid， kangle反向代理， Varnish， Aicache， SJSWPS_ OiWPS， HAProxy_Report，</p>
+<h3 id="脚本语言"><a href="#脚本语言" class="headerlink" title="脚本语言"></a>脚本语言</h3><p>PHP， ASP.NET， python， ruby， jsp， perl， nodejs， ASP，</p>
+<h3 id="前端库"><a href="#前端库" class="headerlink" title="前端库"></a>前端库</h3><p>jquery， bootstrap， d3， jquery-ui， yui， AlloyUI，</p>
+<h3 id="分享模块"><a href="#分享模块" class="headerlink" title="分享模块"></a>分享模块</h3><p>jiathis， ujian， 百度分享， joomla-facebook， addthis， hellobar，</p>
+<h3 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h3><p>百为路由， 锐捷NBR路由器， mikrotik， 中兴路由器， h3c路由器， jcg无线路由器， D-Link_VoIP_Wireless_Router， arrisi_Touchstone， ZyXEL， Ruckus， Motorola_SBG900， Wimax_CPE， Cisco_Cable_Modem， Scientific-Atlanta_Cable_Modem， rap， ZTE_MiFi_UNE， DI-804HV， HuaweiHomeGateway， TP-LINK无线路由器，</p>
+<h3 id="云评论"><a href="#云评论" class="headerlink" title="云评论"></a>云评论</h3><p>uyan， disqus，</p>
+<h3 id="统计模块"><a href="#统计模块" class="headerlink" title="统计模块"></a>统计模块</h3><p>google-analytics， cnzz， baidu统计， 51la， CNZZ统计， awstats_misc_tracker， advancedwebstats， hubspot， 51yes， Piwik，</p>
+<h3 id="开发框架"><a href="#开发框架" class="headerlink" title="开发框架"></a>开发框架</h3><p>ThinkPHP， Swiftlet， Aspnetmvc， CodeIgniter， ColdFusion， WebObjects， cakephp， Django， zikula_framework， NetteFramework， Fat-FreeFramework， Play-Framework， Restlet-Framework， Kohana-Framework， flow_framework， SIMIT_framework， axis2-web，</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>mongodb， elasticsearch， phpMyadmin， MVB2000， GPSweb， Tumblr， phpinfo， AD_RS设备， FrontPageServerExtension， 认证页面， TCN协议， sharepoint， MS-Author-Via， 3COM_NBX， wspx， rack-cache， Dnnoutputcache， Iisexport， Oraclea-DMS， P3p_enabled， X-72e-Nobeian-Transfer， ManagedFusion， Adblock， Blackboard， LiquidGIS， Cocoon， Wp-Super-Cache， pagespeed， Alternate-Protocol， unbouncepages， lemis管理系统， OpenSSL， mod_bwlimited， mod_auth_passthrough， FreeboxOS， SMA_Sunny_Webbox， Wimax_CPE， Aethra_Telecommunications_Operating_System， Scientific-Atlanta_Cable_Modem， rap， ZTE_MiFi_UNE， 用友商战实践平台， moosefs， AirLink_modem， CCProxy， APC_Management， HuaweiHomeGateway， TP-LINK无线路由器， 蓝盾BDWebGuard， 护卫神网站安全系统， phpDocumentor， ColdFusion， Adobe_ CQ5， Adobe_GoLive， Adobe_RoboHelp， Amaya， PHP-CGI， Synology_NAS， OpenMas， __VIEWSTATE， Chromelogger， Communique， recaptcha， IPFire， TerraMaster， 创星伟业校园网群， 正方教务管理系统， UFIDA_NC， 北创图书检索系统， Facebook_insights， squarespace建站， Bad_Behavior， Azure_ARR， Tncms， 北京清科锐华CEMIS， RG-PowerCache内容加速系统， dayrui系列产品， Privoxy代理， wordpress_qTranslate， DVWA， sugon_gridview， blog_fc2， LiteSpeed_Web_Admin_Console， SLTM32_Configuration， SHOUTcast， Piwigo， seeyoo广告机， milu_seotool， Moxa Nport串口服务器， CISCO_EPC3925， CASino， metasploit，</p>
+<h3 id="SSL证书"><a href="#SSL证书" class="headerlink" title="SSL证书"></a>SSL证书</h3><p>thawte_ssl_cert， wosign_ssl_cert， webtrust_cert， globalsign_cert， GeoTrust_cert，</p>
+<h3 id="安全检测平台"><a href="#安全检测平台" class="headerlink" title="安全检测平台"></a>安全检测平台</h3><p>360网站安全检测， teamportal，</p>
+<h3 id="项目管理"><a href="#项目管理" class="headerlink" title="项目管理"></a>项目管理</h3><p>jira， fisheye， VisualSVN， Redmine， zentao， Bugzilla， Phabricator， reviewboard， Hudson， Jenkins， testlink， trac， gitlab， mantis， Mercurial，</p>
+<h3 id="服务器管理"><a href="#服务器管理" class="headerlink" title="服务器管理"></a>服务器管理</h3><p>LuManager， 主机宝， wdcp管理系统， LANMP一键安装包， UPUPW， wamp， easypanel， awstats_admin， awstats， uPlusFtp， Cactiez， Cacti， CrushFTP， HFS， WHM， moosefs， LUM服务器管理， 护卫神主机管理， cpanel， bacula-web， Webmin， Directadmin， Synology_DiskStation， Puppet_Node_Manager，</p>
+<h3 id="企业管理"><a href="#企业管理" class="headerlink" title="企业管理"></a>企业管理</h3><p>易瑞授权访问系统， MVB2000， SonicWALL， NetShare_VPN， pmway_E4_crm， srun3000计费认证系统， Dolibarr， Parallels Plesk Panel， EasyTrace(botwave)， 管理易， 亿赛通DLP， huawei_auth_server， 瑞友天翼_应用虚拟化系统 ， Vmware_vFabric， ICEFLOW_VPN， 360企业版， 用友erp-nc， 深信服ssl-vpn， 天融信VPN， Array_Networks_VPN， 天融信防火墙， o2security_vpn， zabbix， juniper_vpn， F5_BIGIP， CEMIS， DI-804HV， CCProxy， 梭子鱼设备， Synology_NAS， zenoss， Splunk， OpenMas， Ultra_Electronics， NOALYSS， Nagios， ALCASAR， orocrm， Adiscon_LogAnalyzer， Munin， opennms， MRTG， ganglia， 元年财务软件， UFIDA_NC， Webmin， 锐捷应用控制引擎， Storm， 网神VPN， FortiWeb， Centreon， FortiGuard， PineApp， ntop， CDR-Stats， GenieATM， Spark_Worker， Spark_Master， Kibana， CISCO_VPN， UcSTAR， i@Report， 帕拉迪统一安全管理和综合审计系统， openEAP， Dorado， 金龙卡金融化一卡通网站查询子系统， 一采通， 埃森诺网络服务质量检测系统， 惠尔顿上网行为管理系统， ACSNO网络探针， 绿盟下一代防火墙， 用友U8， 华为_HUAWEI_SRG1220， 华为_HUAWEI_SRG2220， 华为_HUAWEI_ASG2100， 华为_HUAWEI_SRG3250， 华为_HUAWEI_ASG2050， 华为（HUAWEI）安全设备， 华为（HUAWEI）Secoway设备， Fireeye，</p>
+<h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><p>蓝讯， 网宿， 帝联， 快网， Webluker， 西部数码， gocdn， Powercdn， Akamai， QingCloud， amazon-cloudfront，</p>
+<h3 id="Web服务器"><a href="#Web服务器" class="headerlink" title="Web服务器"></a>Web服务器</h3><p>Sun[tm]， ZendServer， squid， JBoss_AS， oracle_applicaton_server， IIS， nginx， tomcat， Apache， Tengine， IBM_HTTP_Server， GSE， LiteSpeed， Microsoft-HTTPAPI， ngx_openresty， Zeus， Resin， Netscape-Enterprise， Phusion， webrick， Jetty， Sun-ONE-Web-Server， Oracle-Application-Server， JBoss， kangle反向代理， Varnish， Aicache， SJSWS_ OiWS， AOLserver， Lotus-Domino， gunicorn， Allegro-Software-RomPager， Starlet， nginx_admin， FortiWeb， GlassFish， Privoxy， 东方通应用服务器TongWeb， Mbedthis-Appweb，</p>
+<h3 id="网站防火墙WAF"><a href="#网站防火墙WAF" class="headerlink" title="网站防火墙WAF"></a>网站防火墙WAF</h3><p>一启快， 360主机卫士， 安全狗， Websecurity_WAF， webray， weidun， 安慧网盾， Safe3WAF， AnZuWAF， DnP Firewall， Kerio_WinRoute_Firewall， Dotdefender， Citrix_Netscaler， Mod_Security， PaloAlto_Firewall， WebKnight， Sucuri， 梭子鱼防火墙， 云锁，</p>
+<h3 id="路由器-1"><a href="#路由器-1" class="headerlink" title="路由器"></a>路由器</h3><p>dd-wrt， 锐捷NBR路由器， mikrotik， 中兴路由器， h3c路由器， jcg无线路由器， Comcast_Business_Gateway， AirLink_modem，</p>
+<h3 id="CMS"><a href="#CMS" class="headerlink" title="CMS"></a>CMS</h3><p>phpshe， ThinkSAAS， e-tiller， DouPHP， twcms， SiteServer， Joomla， HDWiki， kesionCMS， CMSTop， ESPCMS， 74cms， Foosun， PhpCMS， Hanweb， Drupal， cmseasy， wordpress， DedeCMS， ASPCMS， MetInfo， Npoint， 小蚂蚁， 捷点JCMS， 帝国EmpireCMS， JEECMS， emlog， IdeaCMS， TCCMS， DIYWAP， supesite， webplus， Dolibarr， ExpressionEngine， iAPPS， Liferay， Telerik Sitefinity， PageAdmin， sdcms， EnterCRM， 易普拉格科研管理系统， 苏亚星校园管理系统， 313自助建站， trs_wcm， we7， 1024cms， 360webfacil_360WebManager， 6kbbs， ABO_CMS， Acidcat_CMS， bit-service， 云因网上书店， DotNetNuke， plone， Kooboocms， unknown_cms， chanzhi， unknown_cms_rcms， MediaWiki， Typecho， Z-Blog， Z-BlogPHP， EleanorCMS， BitrixSiteManager， FOXI BIZzz， BPanelCMS， SubrionCMS， WMSN， TwilightCMS， TechartCMS， 2z project， phpDocumentor， 微门户， Osclass， webEdition， orocrm， 创星伟业校园网群， BoyowCMS， 正方教务管理系统， UFIDA_NC， phpweb， weebly， 地平线CMS， HIMS酒店云计算服务， Tipask， 北创图书检索系统， squarespace建站， 微普外卖点餐系统， 逐浪zoomla， Zikula_CMS， mozartframework， UMI.CMS， EasywebCMS， synkronvia， sitecore， MuraCMS， irecms， typo3， SamanPortal， 北京清科锐华CEMIS， ThinkSNS， asp168欧虎， 擎天电子政务， easysite， 北京阳光环球建站系统， MaticsoftSNS_动软分享社区， FineCMS， Diferior， DokuWiki， WebsiteBaker-CMS， concrete5， 国家数字化学习资源中心系统， 某通用型政府cms， PigCms， 天柏在线培训/考试系统， 万户网络， rcms， 全国烟草系统， O2OCMS， 一采通，</p>
+<h3 id="视频监控"><a href="#视频监控" class="headerlink" title="视频监控"></a>视频监控</h3><p>EdmWebVideo， iDVR， edvr， AVCON6， Polycom， Plesk， techbridge， NETSurveillance， 海康威视（Hikvision）， nvdvr， DVR camera， TRSMAS， Macrec_DVR， Aethra_Telecommunications_Operating_System， ECOR， MOBOTIX_Camera， OnSSI_Video_Clients， Linksys_SPA_Configuration ， eagleeyescctv， dasannetworks， 海康威视iVMS， 佳能网络摄像头(Canon Network Cameras)， NetDvrV3，</p>
+<h3 id="网站云防护"><a href="#网站云防护" class="headerlink" title="网站云防护"></a>网站云防护</h3><p>cloudflare， 加速乐， Incapsula， 百度云加速， 360网站卫士， 安全宝， BinarySec， Sucuri， NetteFramework，</p>
+<h3 id="论坛社区"><a href="#论坛社区" class="headerlink" title="论坛社区"></a>论坛社区</h3><p>phpbb， phpwind， discuz， vBulletin， 6kbbs， IP.Board，</p>
+<h3 id="邮件系统"><a href="#邮件系统" class="headerlink" title="邮件系统"></a>邮件系统</h3><p>fangmail， 腾讯企业邮箱， MDaemon， 亿邮， 网易企业邮箱， TurboMail， magicwinmail， 万网企业云邮箱， bxemail， Coremail， imailserver， exchange， Zimbra， Lotus， Roundcube， Horde， Atmail， iGENUS_webmail， anymacro， mirapoint， iredadmin(Roundcube?)， SquirrelMail， U-Mail， ExtMail， Spammark邮件信息安全网关，</p>
+<h3 id="站长平台"><a href="#站长平台" class="headerlink" title="站长平台"></a>站长平台</h3><p>360站长平台， baidu站长平台， google站长平台， sogou站长平台，</p>
+<h3 id="电商系统"><a href="#电商系统" class="headerlink" title="电商系统"></a>电商系统</h3><p>Zen Cart， ECShop， Shop7Z， 同城多用户商城， iWebShop， eaststorecreeator， buscape， 1und1， 3DCART， cart_engine， Magento， OpenCart， ECMall， PrestaShop， Bigcommerce， TinyShop， hishop， Maticsoft_Shop_动软商城， shopify， hikashop，</p>
+<h3 id="OA系统"><a href="#OA系统" class="headerlink" title="OA系统"></a>OA系统</h3><p>华天动力OA(OA8000)， 通达OA， OA(a8/seeyon/ufida)， yongyoufe， pmway_E4_crm， Dolibarr， PHPOA， 78oa， WishOA， 金和协同管理平台， 泛微协同办公OA， 万户ezOFFICE， ranzhi， Zimbra， Lotus， OA企业智能办公自动化系统， ecwapoa， ezOFFICE，</p>
+<h2 id="3、使用场景"><a href="#3、使用场景" class="headerlink" title="3、使用场景"></a>3、使用场景</h2><p>例如Apache出来了一个高危漏洞，受影响的版本号为2.4.23,我们需要去本公司可能受此漏洞影响的Apache服务器，那么我们可以使用高级查询语句server==”Apache/2.4.23”&amp;&amp;domain=”xxx.com”，搜索结果即为本公司域名下的所有子域名可能存在Apache2.4.23版本漏洞的URL，安全人员可以对结果进行检查，及时修复漏洞。</p>
+<h1 id="三、FOFA的特点"><a href="#三、FOFA的特点" class="headerlink" title="三、FOFA的特点"></a>三、FOFA的特点</h1><h2 id="1-支持API查询接口，便于进行程序间的自动化查询、处理功能，进行进一步的业务分析"><a href="#1-支持API查询接口，便于进行程序间的自动化查询、处理功能，进行进一步的业务分析" class="headerlink" title="1.支持API查询接口，便于进行程序间的自动化查询、处理功能，进行进一步的业务分析"></a>1.支持API查询接口，便于进行程序间的自动化查询、处理功能，进行进一步的业务分析</h2><p>用法如下：</p>
+<p>所有调用都需要提供身份信息，主要是email和key，email主要是注册和登陆时填写的email，key需要用户到个人中心获取32位的hash值，即为API KEY。将上面的两个信息填入api接口中，即可获取json格式的数据。</p>
+<h2 id="2-支持下载功能"><a href="#2-支持下载功能" class="headerlink" title="2.支持下载功能"></a>2.支持下载功能</h2><p>搜索到结果之后可在右侧选择下载功能，可下载搜索到的所有数据，下载的格式支持CSV，JSON，XML格式，方便程序调用进行全网扫描。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Just as you like</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wxfkm.png" alt="RedYan 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/FOFA/" rel="tag"># FOFA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/07/渗透测试常见端口/" rel="next" title="渗透测试常见端口">
+                <i class="fa fa-chevron-left"></i> 渗透测试常见端口
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/touxiang.jpg" alt="RedYan">
+            
+              <p class="site-author-name" itemprop="name">RedYan</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FOFA-是什么？"><span class="nav-number">1.</span> <span class="nav-text">FOFA 是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查询语法介绍"><span class="nav-number">2.</span> <span class="nav-text">查询语法介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、怎么搜？"><span class="nav-number">2.1.</span> <span class="nav-text">1、怎么搜？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-domain"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1 domain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-host"><span class="nav-number">2.1.2.</span> <span class="nav-text">1.2 host</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-ip"><span class="nav-number">2.1.3.</span> <span class="nav-text">1.3 ip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-title"><span class="nav-number">2.1.4.</span> <span class="nav-text">1.4 title</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-server"><span class="nav-number">2.1.5.</span> <span class="nav-text">1.5 server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-header"><span class="nav-number">2.1.6.</span> <span class="nav-text">1.6 header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-body"><span class="nav-number">2.1.7.</span> <span class="nav-text">1.7 body</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-port"><span class="nav-number">2.1.8.</span> <span class="nav-text">1.8 port</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-9-cert"><span class="nav-number">2.1.9.</span> <span class="nav-text">1.9 cert</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-10country"><span class="nav-number">2.1.10.</span> <span class="nav-text">1.10country</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-11-city"><span class="nav-number">2.1.11.</span> <span class="nav-text">1.11 city</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-12-os"><span class="nav-number">2.1.12.</span> <span class="nav-text">1.12 os</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#amp-amp-逻辑与"><span class="nav-number">2.1.13.</span> <span class="nav-text">&amp;&amp;:逻辑与</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#：逻辑或"><span class="nav-number">2.1.14.</span> <span class="nav-text">||：逻辑或</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、搜什么？"><span class="nav-number">2.2.</span> <span class="nav-text">2、搜什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网站模块"><span class="nav-number">2.2.1.</span> <span class="nav-text">网站模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#广告联盟"><span class="nav-number">2.2.2.</span> <span class="nav-text">广告联盟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反向代理服务器"><span class="nav-number">2.2.3.</span> <span class="nav-text">反向代理服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚本语言"><span class="nav-number">2.2.4.</span> <span class="nav-text">脚本语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端库"><span class="nav-number">2.2.5.</span> <span class="nav-text">前端库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分享模块"><span class="nav-number">2.2.6.</span> <span class="nav-text">分享模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由器"><span class="nav-number">2.2.7.</span> <span class="nav-text">路由器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#云评论"><span class="nav-number">2.2.8.</span> <span class="nav-text">云评论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计模块"><span class="nav-number">2.2.9.</span> <span class="nav-text">统计模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发框架"><span class="nav-number">2.2.10.</span> <span class="nav-text">开发框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">2.2.11.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSL证书"><span class="nav-number">2.2.12.</span> <span class="nav-text">SSL证书</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全检测平台"><span class="nav-number">2.2.13.</span> <span class="nav-text">安全检测平台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目管理"><span class="nav-number">2.2.14.</span> <span class="nav-text">项目管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器管理"><span class="nav-number">2.2.15.</span> <span class="nav-text">服务器管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#企业管理"><span class="nav-number">2.2.16.</span> <span class="nav-text">企业管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CDN"><span class="nav-number">2.2.17.</span> <span class="nav-text">CDN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web服务器"><span class="nav-number">2.2.18.</span> <span class="nav-text">Web服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网站防火墙WAF"><span class="nav-number">2.2.19.</span> <span class="nav-text">网站防火墙WAF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由器-1"><span class="nav-number">2.2.20.</span> <span class="nav-text">路由器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMS"><span class="nav-number">2.2.21.</span> <span class="nav-text">CMS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视频监控"><span class="nav-number">2.2.22.</span> <span class="nav-text">视频监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网站云防护"><span class="nav-number">2.2.23.</span> <span class="nav-text">网站云防护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#论坛社区"><span class="nav-number">2.2.24.</span> <span class="nav-text">论坛社区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#邮件系统"><span class="nav-number">2.2.25.</span> <span class="nav-text">邮件系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#站长平台"><span class="nav-number">2.2.26.</span> <span class="nav-text">站长平台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#电商系统"><span class="nav-number">2.2.27.</span> <span class="nav-text">电商系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OA系统"><span class="nav-number">2.2.28.</span> <span class="nav-text">OA系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、使用场景"><span class="nav-number">2.3.</span> <span class="nav-text">3、使用场景</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、FOFA的特点"><span class="nav-number">3.</span> <span class="nav-text">三、FOFA的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-支持API查询接口，便于进行程序间的自动化查询、处理功能，进行进一步的业务分析"><span class="nav-number">3.1.</span> <span class="nav-text">1.支持API查询接口，便于进行程序间的自动化查询、处理功能，进行进一步的业务分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-支持下载功能"><span class="nav-number">3.2.</span> <span class="nav-text">2.支持下载功能</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RedYan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">RedYan</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">博客 </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
