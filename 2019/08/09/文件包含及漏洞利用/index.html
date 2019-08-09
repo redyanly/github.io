@@ -113,7 +113,7 @@
 <meta property="og:image" content="http://yoursite.com/images/24000.jpeg">
 <meta property="og:image" content="http://yoursite.com/images/25000.jpeg">
 <meta property="og:image" content="http://yoursite.com/images/26000.jpeg">
-<meta property="og:updated_time" content="2019-08-09T06:31:40.950Z">
+<meta property="og:updated_time" content="2019-08-09T07:39:34.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件包含及漏洞利用">
 <meta name="twitter:description" content="文件包含漏洞产生的原因：文件包含漏洞主要是程序员把一些公用的代码写在一个单独的文件中，然后使用其他文件进行包含调用，如果需要包含的文件使用硬编码，一般是不会出现安全问题，但是有时可能不确定需要包含哪些具体文件，所以就会采用变量的形式来传递需要包含的文件，但是在使用包含文件的过程中，未对包含的变量进行检查及过滤，导致外部提交的恶意数据作为变量进入到了文件包含的过程中，从而导致提交的恶意数据被执行。">
@@ -408,7 +408,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ file = $ _GET [&apos;file&apos;];</span><br><span class="line">include ($ file);</span><br></pre></td></tr></table></figure>
 
 <p>如果你可以找到上面的代码，那么就有一个直接包含的$文件，你可以控制它。<br>请注意：该文件可以是任何类型，无论它是被删除的文件类型、图片还是任意的内容，都包括在内。</p>
-<p>首先，在当前文件夹中创建任意后缀的任意文件，如：file.txt（即使是像file.jpg这样的图片格式，则会产生以下效果）。将文件的内容设置为：phpinfo ();</p>
+<p>首先，在当前文件夹中创建任意后缀的任意文件，如：file.txt（即使是像file.jpg这样的图片格式，也会产生以下效果）。将文件的内容设置为：phpinfo ();</p>
 <p><img src="/images/11111.jpeg" alt="111"></p>
 <p>此时，文件包含漏洞还包含当前服务器中的其他文件，同时支持包含Web应用程序的目录，如下所示：<br>尝试包括你的硬盘的一些内容，例如：C:\WINDOWS\system.ini。</p>
 <p><img src="/images/22222.jpeg" alt="111"></p>
@@ -419,8 +419,8 @@
 <p>在这种情况下，你可以尝试按照上面的方法：<br>这将导致以下的输出：</p>
 <p><img src="/images/33333.jpeg" alt="111"></p>
 <p>你可以看到，如果后缀是固定的，就像上图一样，你不会找到前面包含的文件。</p>
-<p>所以这里有另一种方法：％00到达时截断一个字符串。这个技巧也被广泛应用于不同的领域</p>
-<p>在PHP中使用％00：<br>1.PHP版本<br>2.PHP <code>magic_quotes_gpc = off</code>;<br>3.PHP不会在收到的参数中使用addslashes函数，例如上面代码中的$ _GET [‘file’]，不过在PHP版本5.3或更高版本中，此问题已得到解决。</p>
+<p>所以这里有另一种方法：％00截断。这个技巧也被广泛应用于不同的领域</p>
+<p>在PHP中使用％00：<br>1.PHP版本&lt;5.3（不包括5.3）;<br>2.PHP <code>magic_quotes_gpc = off</code>;<br>3.PHP不会在收到的参数中使用addslashes函数，例如上面代码中的$ _GET [‘file’]，不过在PHP版本5.3或更高版本中，此问题已得到解决。<br>2和3的原因是因为%00为NULL，NULL被魔术引号和addslashes转义。</p>
 <p>如果打开gpc或者使用了加法器函数，序列将被正确地转义。<br>首先，你可以尝试如果gpc打开会发生什么（效果与使用该函数相同）。</p>
 <p><img src="/images/44444.jpeg" alt="111"></p>
 <p><img src="/images/55555.jpeg" alt="111"></p>
@@ -428,7 +428,7 @@
 <p>接下来可以看看5.3版本中的情况：</p>
 <p><img src="/images/66666.jpeg" alt="111"></p>
 <p>这里也没有明显的效果。<br>所以你可以看到，只要满足上述三个条件，就可以使用％00。</p>
-<p>首先，你要将PHP版本更改为5.2，并在php.ini更改为 magic_quotes_gpc = on tomagic_quotes_gpc = off.后重新启动Apache。<br>这使你就能够在尝试时使用截断。</p>
+<p>首先，你要将PHP版本更改为5.2，并在php.ini更改为magic_quotes_gpc = off.后重新启动Apache。<br>这使你就能够在尝试时使用截断。</p>
 <p><img src="/images/77777.jpeg" alt="111"></p>
 <p>这时可以看到，你已经成功地使用了其中的截断。</p>
 <p>那么文件只包含了包含的功能吗？当然不是，之所以会这样，是因为你可以控制可以包含的内容。<br>你可以创建一个文件：shell.txt来进一步利用这个漏洞。</p>
