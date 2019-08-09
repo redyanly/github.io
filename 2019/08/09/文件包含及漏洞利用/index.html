@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="文件包含,">
 
 
 
@@ -80,6 +80,7 @@
 
 
 <meta name="description" content="文件包含漏洞产生的原因：文件包含漏洞主要是程序员把一些公用的代码写在一个单独的文件中，然后使用其他文件进行包含调用，如果需要包含的文件使用硬编码，一般是不会出现安全问题，但是有时可能不确定需要包含哪些具体文件，所以就会采用变量的形式来传递需要包含的文件，但是在使用包含文件的过程中，未对包含的变量进行检查及过滤，导致外部提交的恶意数据作为变量进入到了文件包含的过程中，从而导致提交的恶意数据被执行。">
+<meta name="keywords" content="文件包含">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文件包含及漏洞利用">
 <meta property="og:url" content="http://yoursite.com/2019/08/09/文件包含及漏洞利用/index.html">
@@ -112,7 +113,7 @@
 <meta property="og:image" content="http://yoursite.com/images/24000.jpeg">
 <meta property="og:image" content="http://yoursite.com/images/25000.jpeg">
 <meta property="og:image" content="http://yoursite.com/images/26000.jpeg">
-<meta property="og:updated_time" content="2019-08-09T06:18:43.174Z">
+<meta property="og:updated_time" content="2019-08-09T06:25:14.727Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件包含及漏洞利用">
 <meta name="twitter:description" content="文件包含漏洞产生的原因：文件包含漏洞主要是程序员把一些公用的代码写在一个单独的文件中，然后使用其他文件进行包含调用，如果需要包含的文件使用硬编码，一般是不会出现安全问题，但是有时可能不确定需要包含哪些具体文件，所以就会采用变量的形式来传递需要包含的文件，但是在使用包含文件的过程中，未对包含的变量进行检查及过滤，导致外部提交的恶意数据作为变量进入到了文件包含的过程中，从而导致提交的恶意数据被执行。">
@@ -351,6 +352,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/渗透测试/" itemprop="url" rel="index">
+                    <span itemprop="name">渗透测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -502,6 +525,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/文件包含/" rel="tag"># 文件包含</a>
+          
+        </div>
+      
 
       
       
@@ -620,7 +649,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
