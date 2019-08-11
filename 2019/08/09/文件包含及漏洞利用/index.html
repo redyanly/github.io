@@ -87,6 +87,7 @@
 <meta property="og:site_name" content="Don&#39;t let your dreams be dreams">
 <meta property="og:description" content="文件包含漏洞产生的原因：文件包含漏洞主要是程序员把一些公用的代码写在一个单独的文件中，然后使用其他文件进行包含调用，如果需要包含的文件使用硬编码，一般是不会出现安全问题，但是有时可能不确定需要包含哪些具体文件，所以就会采用变量的形式来传递需要包含的文件，但是在使用包含文件的过程中，未对包含的变量进行检查及过滤，导致外部提交的恶意数据作为变量进入到了文件包含的过程中，从而导致提交的恶意数据被执行。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/998877.png">
 <meta property="og:image" content="http://yoursite.com/images/11111.jpeg">
 <meta property="og:image" content="http://yoursite.com/images/22222.jpeg">
 <meta property="og:image" content="http://yoursite.com/images/33333.jpeg">
@@ -113,11 +114,11 @@
 <meta property="og:image" content="http://yoursite.com/images/24000.jpeg">
 <meta property="og:image" content="http://yoursite.com/images/25000.jpeg">
 <meta property="og:image" content="http://yoursite.com/images/26000.jpeg">
-<meta property="og:updated_time" content="2019-08-09T07:39:34.129Z">
+<meta property="og:updated_time" content="2019-08-11T06:06:05.997Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件包含及漏洞利用">
 <meta name="twitter:description" content="文件包含漏洞产生的原因：文件包含漏洞主要是程序员把一些公用的代码写在一个单独的文件中，然后使用其他文件进行包含调用，如果需要包含的文件使用硬编码，一般是不会出现安全问题，但是有时可能不确定需要包含哪些具体文件，所以就会采用变量的形式来传递需要包含的文件，但是在使用包含文件的过程中，未对包含的变量进行检查及过滤，导致外部提交的恶意数据作为变量进入到了文件包含的过程中，从而导致提交的恶意数据被执行。">
-<meta name="twitter:image" content="http://yoursite.com/images/11111.jpeg">
+<meta name="twitter:image" content="http://yoursite.com/images/998877.png">
 
 
 
@@ -402,89 +403,137 @@
 
       
         <h2 id="文件包含漏洞产生的原因："><a href="#文件包含漏洞产生的原因：" class="headerlink" title="文件包含漏洞产生的原因："></a>文件包含漏洞产生的原因：</h2><p>文件包含漏洞主要是程序员把一些公用的代码写在一个单独的文件中，然后使用其他文件进行包含调用，如果需要包含的文件使用硬编码，一般是不会出现安全问题，但是有时可能不确定需要包含哪些具体文件，所以就会采用变量的形式来传递需要包含的文件，但是在使用包含文件的过程中，未对包含的变量进行检查及过滤，导致外部提交的恶意数据作为变量进入到了文件包含的过程中，从而导致提交的恶意数据被执行。</p>
-<h2 id="文件包含漏洞的分类："><a href="#文件包含漏洞的分类：" class="headerlink" title="文件包含漏洞的分类："></a>文件包含漏洞的分类：</h2><h3 id="1-本地文件包含-Loacl-File-Inclusion-LFI"><a href="#1-本地文件包含-Loacl-File-Inclusion-LFI" class="headerlink" title="1.本地文件包含(Loacl File Inclusion,LFI)"></a>1.本地文件包含(Loacl File Inclusion,LFI)</h3><h3 id="2-远程文件包含-Remote-File-Inclusion-RFI"><a href="#2-远程文件包含-Remote-File-Inclusion-RFI" class="headerlink" title="2.远程文件包含(Remote File Inclusion,RFI)"></a>2.远程文件包含(Remote File Inclusion,RFI)</h3><h2 id="文件包含漏洞的危害："><a href="#文件包含漏洞的危害：" class="headerlink" title="文件包含漏洞的危害："></a>文件包含漏洞的危害：</h2><p>通过文件包含漏洞，可以读取系统中的敏感文件，源代码文件等，如密码文件，通过对密码文件进行暴力破解。若破解成功则可获取操作系统的用户账户，甚至可通过开放的远程连接服务进行连接控制。另外不管是本地文件包含还是远程文件包含，文件包含漏洞还可能导致执行任意代码。</p>
+<h2 id="文件包含源码如下："><a href="#文件包含源码如下：" class="headerlink" title="文件包含源码如下："></a>文件包含源码如下：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;code&gt; if(@$_GET[&apos;file&apos;])&#123;</span><br><span class="line">include_once($_GET[&apos;file&apos;]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件包含漏洞的形成，需要满足两个条件："><a href="#文件包含漏洞的形成，需要满足两个条件：" class="headerlink" title="文件包含漏洞的形成，需要满足两个条件："></a>文件包含漏洞的形成，需要满足两个条件：</h2><h3 id="1-include-等函数通过动态变量的方式引入需要包含的文件"><a href="#1-include-等函数通过动态变量的方式引入需要包含的文件" class="headerlink" title="1.include()等函数通过动态变量的方式引入需要包含的文件"></a>1.include()等函数通过动态变量的方式引入需要包含的文件</h3><h3 id="2-用户能够控制这个动态变量"><a href="#2-用户能够控制这个动态变量" class="headerlink" title="2.用户能够控制这个动态变量"></a>2.用户能够控制这个动态变量</h3><h2 id="文件包含漏洞的分类："><a href="#文件包含漏洞的分类：" class="headerlink" title="文件包含漏洞的分类："></a>文件包含漏洞的分类：</h2><h3 id="1-本地文件包含-Loacl-File-Inclusion-LFI"><a href="#1-本地文件包含-Loacl-File-Inclusion-LFI" class="headerlink" title="1.本地文件包含(Loacl File Inclusion,LFI)"></a>1.本地文件包含(Loacl File Inclusion,LFI)</h3><p>url形如：<br><a href="http://127.0.0.1/fi/include1.php?file=phpinfo.php" target="_blank" rel="noopener">http://127.0.0.1/fi/include1.php?file=phpinfo.php</a></p>
+<h3 id="2-远程文件包含-Remote-File-Inclusion-RFI"><a href="#2-远程文件包含-Remote-File-Inclusion-RFI" class="headerlink" title="2.远程文件包含(Remote File Inclusion,RFI)"></a>2.远程文件包含(Remote File Inclusion,RFI)</h3><p>url形如：<br><a href="http://127.0.0.1/fi/include1.php?file=http://127.0.0.1/phpinfo.txt" target="_blank" rel="noopener">http://127.0.0.1/fi/include1.php?file=http://127.0.0.1/phpinfo.txt</a></p>
+<p>所包含对象可以是任意文件，执行方式是将文件内容以php代码来执行</p>
+<h2 id="文件包含漏洞的危害："><a href="#文件包含漏洞的危害：" class="headerlink" title="文件包含漏洞的危害："></a>文件包含漏洞的危害：</h2><p>通过文件包含漏洞，可以读取系统中的敏感文件，源代码文件等，如密码文件，通过对密码文件进行暴力破解。若破解成功则可获取操作系统的用户账户，甚至可通过开放的远程连接服务进行连接控制。另外不管是本地文件包含还是远程文件包含，文件包含漏洞还可能导致执行任意代码。也可以读取本地的源代码进行分析进一步发现漏洞，或者通过构造特殊请求写入日志，然后包含日志文件，达到获取Webshell的目的。</p>
 <h2 id="本地文件包含："><a href="#本地文件包含：" class="headerlink" title="本地文件包含："></a>本地文件包含：</h2><p>本地文件包含就是通过浏览器包含web服务器上的文件，这种漏洞是因为浏览器包含文件时没有进行严格的过滤，允许遍历目录的字符注入浏览器并执行。</p>
 <p>首先，当值可以直接被控制时，你就会有一个非常类似的如下的代码片段：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ file = $ _GET [&apos;file&apos;];</span><br><span class="line">include ($ file);</span><br></pre></td></tr></table></figure>
 
 <p>如果你可以找到上面的代码，那么就有一个直接包含的$文件，你可以控制它。<br>请注意：该文件可以是任何类型，无论它是被删除的文件类型、图片还是任意的内容，都包括在内。</p>
+<p>通过目录遍历漏洞可以获取到系统中其他文件的内容：</p>
+<p><img src="/images/998877.png" alt="998877"></p>
+<h3 id="常见的敏感信息路径："><a href="#常见的敏感信息路径：" class="headerlink" title="常见的敏感信息路径："></a>常见的敏感信息路径：</h3><h4 id="Windows系统"><a href="#Windows系统" class="headerlink" title="Windows系统"></a>Windows系统</h4><p>c:\boot.ini // 查看系统版本</p>
+<p>c:\windows\system32\inetsrv\MetaBase.xml // IIS配置文件</p>
+<p>c:\windows\repair\sam // 存储Windows系统初次安装的密码</p>
+<p>c:\ProgramFiles\mysql\my.ini // MySQL配置</p>
+<p>c:\ProgramFiles\mysql\data\mysql\user.MYD // MySQL root密码</p>
+<p>c:\windows\php.ini // php 配置信息</p>
+<h4 id="Linux-Unix系统"><a href="#Linux-Unix系统" class="headerlink" title="Linux/Unix系统"></a>Linux/Unix系统</h4><p>/etc/passwd // 账户信息</p>
+<p>/etc/shadow // 账户密码文件</p>
+<p>/usr/local/app/apache2/conf/httpd.conf // Apache2默认配置文件</p>
+<p>/usr/local/app/apache2/conf/extra/httpd-vhost.conf // 虚拟网站配置</p>
+<p>/usr/local/app/php5/lib/php.ini // PHP相关配置</p>
+<p>/etc/httpd/conf/httpd.conf // Apache配置文件</p>
+<p>/etc/my.conf // mysql 配置文件</p>
 <p>首先，在当前文件夹中创建任意后缀的任意文件，如：file.txt（即使是像file.jpg这样的图片格式，也会产生以下效果）。将文件的内容设置为：phpinfo ();</p>
-<p><img src="/images/11111.jpeg" alt="111"></p>
+<p><img src="/images/11111.jpeg" alt="11111"></p>
 <p>此时，文件包含漏洞还包含当前服务器中的其他文件，同时支持包含Web应用程序的目录，如下所示：<br>尝试包括你的硬盘的一些内容，例如：C:\WINDOWS\system.ini。</p>
-<p><img src="/images/22222.jpeg" alt="111"></p>
+<p><img src="/images/22222.jpeg" alt="22222"></p>
 <p>如果你这样做，就可以在浏览器上看到任何文件的输出内容。<br>这只有当你有完全控制和文件类型没有进一步指定时才有效。</p>
 <p>那么，如果代码片段变成如下这样，你该怎么做？</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$file = $_GET[&apos;file&apos;] . &apos;.php&apos;;</span><br><span class="line">echo $file;</span><br><span class="line">include($file);</span><br></pre></td></tr></table></figure>
 
 <p>在这种情况下，你可以尝试按照上面的方法：<br>这将导致以下的输出：</p>
-<p><img src="/images/33333.jpeg" alt="111"></p>
-<p>你可以看到，如果后缀是固定的，就像上图一样，你不会找到前面包含的文件。</p>
+<p><img src="/images/33333.jpeg" alt="33333"></p>
+<h3 id="00截断"><a href="#00截断" class="headerlink" title="%00截断"></a>%00截断</h3><p>你可以看到，如果后缀是固定的，就像上图一样，你不会找到前面包含的文件。</p>
 <p>所以这里有另一种方法：％00截断。这个技巧也被广泛应用于不同的领域</p>
 <p>在PHP中使用％00：<br>1.PHP版本&lt;5.3（不包括5.3）;<br>2.PHP <code>magic_quotes_gpc = off</code>;<br>3.PHP不会在收到的参数中使用addslashes函数，例如上面代码中的$ _GET [‘file’]，不过在PHP版本5.3或更高版本中，此问题已得到解决。<br>2和3的原因是因为%00为NULL，NULL被魔术引号和addslashes转义。</p>
 <p>如果打开gpc或者使用了加法器函数，序列将被正确地转义。<br>首先，你可以尝试如果gpc打开会发生什么（效果与使用该函数相同）。</p>
-<p><img src="/images/44444.jpeg" alt="111"></p>
-<p><img src="/images/55555.jpeg" alt="111"></p>
+<p><img src="/images/44444.jpeg" alt="44444"></p>
+<p><img src="/images/55555.jpeg" alt="55555"></p>
 <p>如果你启用了gpc标志，你可以直接看到这个过程是如何发生的。</p>
 <p>接下来可以看看5.3版本中的情况：</p>
-<p><img src="/images/66666.jpeg" alt="111"></p>
+<p><img src="/images/66666.jpeg" alt="66666"></p>
 <p>这里也没有明显的效果。<br>所以你可以看到，只要满足上述三个条件，就可以使用％00。</p>
 <p>首先，你要将PHP版本更改为5.2，并在php.ini更改为magic_quotes_gpc = off.后重新启动Apache。<br>这使你就能够在尝试时使用截断。</p>
-<p><img src="/images/77777.jpeg" alt="111"></p>
+<p><img src="/images/77777.jpeg" alt="77777"></p>
 <p>这时可以看到，你已经成功地使用了其中的截断。</p>
 <p>那么文件只包含了包含的功能吗？当然不是，之所以会这样，是因为你可以控制可以包含的内容。<br>你可以创建一个文件：shell.txt来进一步利用这个漏洞。</p>
-<p><img src="/images/88888.jpeg" alt="111"></p>
+<p><img src="/images/88888.jpeg" alt="88888"></p>
 <p>你可以看到，其中也包括了shell。<br>那么两者有什么区别呢？其实没有什么区别，原理是一样的，但是第一个是用后缀来介绍的，第二个是固定在程序后缀后面的。但是可以使用％00，因为当程序流（program stream ）遇到％00终止符(terminator)时它会直接终止。</p>
+<h3 id="路径长度截断"><a href="#路径长度截断" class="headerlink" title="路径长度截断"></a>路径长度截断</h3><p>条件：windows OS，点号需要长于256；linux OS 长于4096</p>
+<p>Windows下目录最大长度为256字节，超出的部分会被丢弃；</p>
+<p>Linux下目录最大长度为4096字节，超出的部分会被丢弃。</p>
+<p>测试代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $filename  = $_GET[&apos;filename&apos;];</span><br><span class="line">    include($filename . &quot;.html&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>EXP:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.ctfs-wiki.com/FI/FI.php?filename=test.txt/./././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././/././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././/././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././/././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././/./././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././</span><br></pre></td></tr></table></figure>
+
+<h3 id="点号截断"><a href="#点号截断" class="headerlink" title="点号截断"></a>点号截断</h3><p>条件：windows OS，点号需要长于256</p>
+<p>测试代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $filename  = $_GET[&apos;filename&apos;];</span><br><span class="line">    include($filename . &quot;.html&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>EXP:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://www.ctfs-wiki.com/FI/FI.php</span><br><span class="line">?filename=test.txt.................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................</span><br></pre></td></tr></table></figure>
+
+<h2 id="包含日志文件拿SHELL"><a href="#包含日志文件拿SHELL" class="headerlink" title="包含日志文件拿SHELL"></a>包含日志文件拿SHELL</h2><p>web服务器，基本上把请求写入到他的日志文件中，有的是access.log，有的是error.log，所以，我们可以尝试，写一些奇怪的数据，例如<?php eval($_POST['cmd'])?>，然后呢让访问出错，这个就会被记录到日志文件中去，然后，我们利用本地包含，去包含这个日志文件，相当于我们得到了一个shell。</p>
+<p>可以在url里面写入shell数据，也可以在referer或者ua中写入，但是，这个写入尽量要使用抓包工具，例如burp来写入，因为浏览器，会给我们转码。造成包含不成功。</p>
 <h2 id="远程文件包含："><a href="#远程文件包含：" class="headerlink" title="远程文件包含："></a>远程文件包含：</h2><p>远程文件包含就是允许攻击者包含一个远程的文件,一般是在远程服务器上预先设置好的脚本。 此漏洞是因为浏览器对用户的输入没有进行检查，导致不同程度的信息泄露、拒绝服务攻击 甚至在目标服务器上执行代码。</p>
 <p>本地文件包含与远程文件有着相同的原理，但前者只能包含服务器上存在的文件，而后者可以包含远程服务器上的文件。</p>
+<p>如果PHP的配置选项中，allow_url_include为ON的话，include和require这样的文件包含函数是可以加载远程文件的。远程文件漏洞，可以直接用来执行任意命令。</p>
+<p>allow_url_include 是否允许引用URL文件<br>allow_url_fopen   是否允许打开URL文件</p>
+<p>在新版PHP中allow_url_fopen选项默认是打开的，allow_url_include默认是关闭的</p>
 <p>对于远程文件，你需要考虑以下2点：<br>1.在php.ini中需要allow_url_include = on和allow_url_fopen= on<br>2.所需的远程文件后缀不能与目标服务器的语言相同，如目标服务器解析PHP代码，则远程文件后缀不能为.php。</p>
 <p>让我解释一下第二点，如果你的远程文件具有.php后缀，并且你的远程文件内容如下所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">phpinfo ();</span><br></pre></td></tr></table></figure>
 
 <p>那么在远程服务器执行phpinfo()之后，你就可以获得目标服务器的内容。由于它不会运行代码，所以包含的信息不是目标服务器，而是远程服务器。<br>如下所示：</p>
-<p><img src="/images/99999.jpeg" alt="111"></p>
+<p><img src="/images/99999.jpeg" alt="99999"></p>
 <p>这是我的PHP5.6版本的远程设备信息，目标设备是5.2版本。</p>
 <p>接下来是包含文件：</p>
-<p><img src="/images/10111.jpeg" alt="111"></p>
+<p><img src="/images/10111.jpeg" alt="10111"></p>
 <p>你可以看到，包含文件后，你的远程设备发生了变化，这是为什么呢?<br>由于目标服务器不包含此代码：<br>此时，远程服务器会执行此代码的源代码，如下所示：</p>
-<p><img src="/images/11000.jpeg" alt="111"></p>
+<p><img src="/images/11000.jpeg" alt="11000"></p>
 <p>所以为了使这个攻击开始运行，你需要做一些修改：</p>
 <p>1.修改配置</p>
-<p><img src="/images/12000.jpeg" alt="111"></p>
+<p><img src="/images/12000.jpeg" alt="12000"></p>
 <p>2.修改文件后缀</p>
-<p><img src="/images/13000.jpeg" alt="111"></p>
+<p><img src="/images/13000.jpeg" alt="13000"></p>
 <p>此时，你可以再来尝试一下包含的攻击向量：</p>
-<p><img src="/images/14000.jpeg" alt="111"></p>
+<p><img src="/images/14000.jpeg" alt="14000"></p>
 <p>那么你可以看到所需的信息在此包含之后返回，并且你的目标设备信息不再改变。</p>
 <p>接下来，你要再次为远程文件包含做一个shell示例。</p>
-<p><img src="/images/15000.jpeg" alt="111"></p>
-<p><img src="/images/16000.jpeg" alt="111"></p>
+<p><img src="/images/15000.jpeg" alt="15000"></p>
+<p><img src="/images/16000.jpeg" alt="16000"></p>
 <p>远程文件包含使用的前提是，符合本地文件包含的前提并符合远程文件包含其可用性的前提。</p>
 <h3 id="文件包含许多伪协议"><a href="#文件包含许多伪协议" class="headerlink" title="文件包含许多伪协议"></a>文件包含许多伪协议</h3><p>文件中可以包含不同的伪协议，我将在下面演示其中的一些：</p>
 <h4 id="1-data-text-plain-or-data-text-plain-base64"><a href="#1-data-text-plain-or-data-text-plain-base64" class="headerlink" title="1.data:text/plain or data: text/plain; base64"></a>1.data:text/plain or data: text/plain; base64</h4><p>data:text/plain</p>
 <p>输出直接显示在相应的URL中，显示参数：data：text / plain。</p>
 <p>然后你需要执行如下所示的php代码：</p>
-<p><img src="/images/17000.jpeg" alt="111"></p>
+<p><img src="/images/17000.jpeg" alt="17000"></p>
 <p>data：text/plain; BASE64</p>
 <p>有另一种方法来使用data: text/plain; base64，不过此时你需要使用base64编码来执行PHP代码，base64php代码如下所示：</p>
-<p><img src="/images/18000.jpeg" alt="111"></p>
+<p><img src="/images/18000.jpeg" alt="18000"></p>
 <h4 id="2-php-input"><a href="#2-php-input" class="headerlink" title="2.php://input"></a>2.php://input</h4><p>php://input访问请求的原始数据的只读流（read-only stream），会将post请求中的数据作为php代码执行。</p>
-<p><img src="/images/19000.jpeg" alt="111"></p>
+<p><img src="/images/19000.jpeg" alt="19000"></p>
 <p>你可以看到程序自动添加了一个.php后缀，因此使用包括php://input，将自动添加.php，所以它肯定不能正常工作。</p>
 <p>此时，你可以参考以上的％00技巧来截断文件路径。</p>
-<p><img src="/images/20000.jpeg" alt="111"></p>
-<p><img src="/images/21000.jpeg" alt="111"></p>
+<p><img src="/images/20000.jpeg" alt="20000"></p>
+<p><img src="/images/21000.jpeg" alt="21000"></p>
 <p>你可以看到终止符(terminator)是非常强大的。</p>
 <h4 id="3-php-filter"><a href="#3-php-filter" class="headerlink" title="3.php://filter"></a>3.php://filter</h4><p>php://filter可以读取php文件的代码base64编码的输出并将其返回给你。</p>
 <p>例如，你想读取一个PHP文件，但不希望它是正常的PHP。你可以通过php：//filter/read=convert.base64-encode/resource=../ 读取文件代码的内容。</p>
-<p><img src="/images/22000.jpeg" alt="111"></p>
+<p><img src="/images/22000.jpeg" alt="22000"></p>
 <p>解码base64后，你可以像正常情况一样获取内容：</p>
-<p><img src="/images/23000.jpeg" alt="111"></p>
+<p><img src="/images/23000.jpeg" alt="23000"></p>
+<p>filter协议相对路径和绝对路径都可以使用</p>
 <h4 id="4-file"><a href="#4-file" class="headerlink" title="4.file://"></a>4.file://</h4><p>file://用于访问本地文件系统，不受allow_url_fopen orallow_url_include的影响，你可以使用file:// absolute / path / to / file来获取。</p>
-<p><img src="/images/24000.jpeg" alt="111"></p>
+<p>file协议只能使用绝对路径</p>
+<p><img src="/images/24000.jpeg" alt="24000"></p>
 <h4 id="5-zip"><a href="#5-zip" class="headerlink" title="5.zip://"></a>5.zip://</h4><p>zip://可以访问zip文件中的文件，但它需要一个绝对路径。你可以使用zip://[archive absolute path] # [compressed file name]在本地创建一个文件并将其压缩到一个zip压缩文件中。</p>
-<p><img src="/images/25000.jpeg" alt="111"></p>
+<p><img src="/images/25000.jpeg" alt="25000"></p>
 <p>此时，你就可以填入绝对路径和文件的名称了。那么，你可能会有两个疑问？<br>1.为什么你不能成功显示包括zip://的错误？<br>这其中就包含zip://C:/phpStudy/WWW/include/phpinfo.zip.php，这是因为你不想包含这个文件，而是想把这个文件包含在zip里。<br>2.为什么是＃以后的值？<br>因为＃会忽略它后面的参数，所以你需要在表单中使用％23。还有一点就是，包含的文件以.php结尾，但你压缩了php后缀的文件。<br>所以如下所示，你不需要这个后缀。</p>
-<p><img src="/images/26000.jpeg" alt="111"></p>
+<p><img src="/images/26000.jpeg" alt="26000"></p>
+<h2 id="文件包含的防御方式："><a href="#文件包含的防御方式：" class="headerlink" title="文件包含的防御方式："></a>文件包含的防御方式：</h2><h3 id="1-设置白名单"><a href="#1-设置白名单" class="headerlink" title="1.设置白名单"></a>1.设置白名单</h3><p>代码在进行文件包含时，如果文件名可以确定，可以设置白名单对传入的参数进行比较。</p>
+<h3 id="2-过滤危险字符"><a href="#2-过滤危险字符" class="headerlink" title="2.过滤危险字符"></a>2.过滤危险字符</h3><p>由于Include/Require可以对PHP Wrapper形式的地址进行包含执行（需要配置php.ini），在Linux环境中可以通过”../../”的形式进行目录绕过，所以需要判断文件名称是否为合法的PHP文件。</p>
+<h3 id="3-设置文件目录"><a href="#3-设置文件目录" class="headerlink" title="3.设置文件目录"></a>3.设置文件目录</h3><p>PHP配置文件中有open_basedir选项可以设置用户需要执行的文件目录，如果设置目录的话，PHP仅仅在该目录内搜索文件。</p>
+<h3 id="4-关闭危险配置"><a href="#4-关闭危险配置" class="headerlink" title="4.关闭危险配置"></a>4.关闭危险配置</h3><p>PHP配置中的allow_url_include选项如果打开，PHP会通过Include/Require进行远程文件包含，由于远程文件的不可信任性及不确定性，在开发中禁止打开此选项，PHP默认是关闭的。</p>
+<p>最后，总结一下任意文件包含漏洞的防御方式。任意文件包含漏洞的主要出现在能够解析处理脚本文件的函数上，没有对输入的变量进行过滤，导致任意文件包含，进而导致恶意代码执行。在开发处理这类功能函数上，一定要遵循编程规范；在代码核心处，对变量进行过滤限制，设置文件路径或者白名单，避免执行任意文件包含。</p>
 
       
     </div>
@@ -682,7 +731,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含漏洞产生的原因："><span class="nav-number">1.</span> <span class="nav-text">文件包含漏洞产生的原因：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含漏洞的分类："><span class="nav-number">2.</span> <span class="nav-text">文件包含漏洞的分类：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-本地文件包含-Loacl-File-Inclusion-LFI"><span class="nav-number">2.1.</span> <span class="nav-text">1.本地文件包含(Loacl File Inclusion,LFI)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-远程文件包含-Remote-File-Inclusion-RFI"><span class="nav-number">2.2.</span> <span class="nav-text">2.远程文件包含(Remote File Inclusion,RFI)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含漏洞的危害："><span class="nav-number">3.</span> <span class="nav-text">文件包含漏洞的危害：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地文件包含："><span class="nav-number">4.</span> <span class="nav-text">本地文件包含：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程文件包含："><span class="nav-number">5.</span> <span class="nav-text">远程文件包含：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件包含许多伪协议"><span class="nav-number">5.1.</span> <span class="nav-text">文件包含许多伪协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-data-text-plain-or-data-text-plain-base64"><span class="nav-number">5.1.1.</span> <span class="nav-text">1.data:text/plain or data: text/plain; base64</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-php-input"><span class="nav-number">5.1.2.</span> <span class="nav-text">2.php://input</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-php-filter"><span class="nav-number">5.1.3.</span> <span class="nav-text">3.php://filter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-file"><span class="nav-number">5.1.4.</span> <span class="nav-text">4.file://</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-zip"><span class="nav-number">5.1.5.</span> <span class="nav-text">5.zip://</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含漏洞产生的原因："><span class="nav-number">1.</span> <span class="nav-text">文件包含漏洞产生的原因：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含源码如下："><span class="nav-number">2.</span> <span class="nav-text">文件包含源码如下：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含漏洞的形成，需要满足两个条件："><span class="nav-number">3.</span> <span class="nav-text">文件包含漏洞的形成，需要满足两个条件：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-include-等函数通过动态变量的方式引入需要包含的文件"><span class="nav-number">3.1.</span> <span class="nav-text">1.include()等函数通过动态变量的方式引入需要包含的文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-用户能够控制这个动态变量"><span class="nav-number">3.2.</span> <span class="nav-text">2.用户能够控制这个动态变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含漏洞的分类："><span class="nav-number">4.</span> <span class="nav-text">文件包含漏洞的分类：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-本地文件包含-Loacl-File-Inclusion-LFI"><span class="nav-number">4.1.</span> <span class="nav-text">1.本地文件包含(Loacl File Inclusion,LFI)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-远程文件包含-Remote-File-Inclusion-RFI"><span class="nav-number">4.2.</span> <span class="nav-text">2.远程文件包含(Remote File Inclusion,RFI)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含漏洞的危害："><span class="nav-number">5.</span> <span class="nav-text">文件包含漏洞的危害：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地文件包含："><span class="nav-number">6.</span> <span class="nav-text">本地文件包含：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的敏感信息路径："><span class="nav-number">6.1.</span> <span class="nav-text">常见的敏感信息路径：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows系统"><span class="nav-number">6.1.1.</span> <span class="nav-text">Windows系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux-Unix系统"><span class="nav-number">6.1.2.</span> <span class="nav-text">Linux/Unix系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#00截断"><span class="nav-number">6.2.</span> <span class="nav-text">%00截断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路径长度截断"><span class="nav-number">6.3.</span> <span class="nav-text">路径长度截断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#点号截断"><span class="nav-number">6.4.</span> <span class="nav-text">点号截断</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#包含日志文件拿SHELL"><span class="nav-number">7.</span> <span class="nav-text">包含日志文件拿SHELL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程文件包含："><span class="nav-number">8.</span> <span class="nav-text">远程文件包含：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件包含许多伪协议"><span class="nav-number">8.1.</span> <span class="nav-text">文件包含许多伪协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-data-text-plain-or-data-text-plain-base64"><span class="nav-number">8.1.1.</span> <span class="nav-text">1.data:text/plain or data: text/plain; base64</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-php-input"><span class="nav-number">8.1.2.</span> <span class="nav-text">2.php://input</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-php-filter"><span class="nav-number">8.1.3.</span> <span class="nav-text">3.php://filter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-file"><span class="nav-number">8.1.4.</span> <span class="nav-text">4.file://</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-zip"><span class="nav-number">8.1.5.</span> <span class="nav-text">5.zip://</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含的防御方式："><span class="nav-number">9.</span> <span class="nav-text">文件包含的防御方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-设置白名单"><span class="nav-number">9.1.</span> <span class="nav-text">1.设置白名单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-过滤危险字符"><span class="nav-number">9.2.</span> <span class="nav-text">2.过滤危险字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-设置文件目录"><span class="nav-number">9.3.</span> <span class="nav-text">3.设置文件目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-关闭危险配置"><span class="nav-number">9.4.</span> <span class="nav-text">4.关闭危险配置</span></a></li></ol></li></ol></div>
             
 
           </div>
