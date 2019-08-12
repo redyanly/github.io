@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[减肥史]]></title>
+    <url>%2F2019%2F08%2F12%2F%E5%87%8F%E8%82%A5%E5%8F%B2%2F</url>
+    <content type="text"><![CDATA[开始努力减肥~控制饮食，少吃油炸烧烤，尽量多运动 2019.08.12 星期一 早晨测量体重：87.6KG]]></content>
+      <categories>
+        <category>私人生活</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[MSSQL三张特殊的系统表]]></title>
     <url>%2F2019%2F08%2F12%2FMSSQL%E4%B8%89%E5%BC%A0%E7%89%B9%E6%AE%8A%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%A1%A8%2F</url>
     <content type="text"><![CDATA[在进行microsoft sql server 数据库操作的时候，经常会有以下的疑问 ​ ① msql 中一共有多少的数据库？ ​ ② 如何判断数据库是否存在（不存在就创建，存在就不创建）？ ​ ③ 数据库中有哪些表？ ​ ④ 如何判断数据库中是否存在某张表？ ​ ⑤ 如何查看一张表一共创建了多少个字段？ ​ ⑥ 如何判断这个字段是否存在？ ​ 等，这些问题的解决需要使用到mssql数据库中提供的三张特殊的表 1.sysdatabases ：管理已经存在的数据库；(1)查看mssql中所有的数据库：SELECT * from sysdatabases (2)判断某个数据库是否存在：SELECT * from sysdatabases where name = ‘moviesite’; (3)统计数据库的总数：SELECT COUNT(*) as 数据库总数 from sysdatabases; 2.sysobjects：管理已经存在的表；(1)查看数据库中所有的表格：select * from sysobjects; (2)查看用户自己创建的所有的表格：select * from sysobjectswhere type = ‘U’; (3)判断某个表格是否存在：select * from sysobjectswhere name = ‘movie’; (4)统计表格总数：select COUNT(*) 表格总数 from sysobjects; 3.syscolumns：管理表中字段；(1)查看数据库中所有的字段：select * from syscolumns; (2)查看某张表中所有的字段：select * from syscolumns where id = OBJECT_ID(‘movie’); (3)查看某一字段是否存在：select * from syscolumns where id = OBJECT_ID(‘movie’) and name = ‘type’;]]></content>
